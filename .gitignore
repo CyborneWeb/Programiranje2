@@ -3,7 +3,10 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .kotlin
-
+.idea/
+.gitattributes
+Programiranje2.iml
+.gitignore
 ### Eclipse ###
 .apt_generated
 .classpath
