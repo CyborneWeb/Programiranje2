@@ -111,7 +111,7 @@ public class Vaje1 {
         } else sirina = v;
 
 
-        pravokotnik(2*v-2, sirina, 2*v);
+        pravokotnik((2*v-velikost) + (2 * velikost - 1 - sirina) / 2, sirina, 2*v);
     }
 
 
@@ -132,7 +132,7 @@ public class Vaje1 {
 
 //        romb(2, 5);
 
-        smreka(3);
+//        smreka(7);
 
 
 
