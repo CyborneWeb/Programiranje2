@@ -52,7 +52,7 @@ public class Kviz1 {
 
         System.out.printf("x1=%.2f, x2=%.2f", nicla1, nicla2);
     }
-    static String pretvoriSekunde(int sekunde){
+    static String pretvoriSekunde(int sekunde) {
         if (sekunde < 0) {
             return "Število sekund ne more biti negativno";
         }
@@ -64,12 +64,46 @@ public class Kviz1 {
 
         return String.format("%02d:%02d:%02d", ure, minute, ostale);
 
-
     }
+
+    static void javaJavaJava(int n){
+        if (n<0){
+            System.out.println("Napaka: negativen n");
+            return;
+        }
+        System.out.print(
+                ("     J    a   v     v  a   " ).repeat(n)  +  "\n" +
+                ("     J   a a   v   v  a a  " ).repeat(n)  +  "\n" +
+                ("  J  J  aaaaa   V V  aaaaa " ).repeat(n) +   "\n" +
+                ("   JJ  a     a   V  a     a" ).repeat(n)
+        );
+
+        }
+
+    static boolean jeFibonaccijevo(int n){
+        if (n <=0) return false;
+        if (n ==1) return true;
+
+        long a =1;
+        long b =1;
+
+        while (b < n) {
+            long next = a + b;
+            a = b;
+            b = next;
+        }
+
+        return b == n;
+    }
+
+    static
+
+
     public static void main(String[] args){
         //kalkulator(42, 13);
         //nicli(1, 2, 2);
-        System.out.println(pretvoriSekunde(65));
+        //System.out.println(pretvoriSekunde(65));
+        javaJavaJava(3);
 
     }
 }
