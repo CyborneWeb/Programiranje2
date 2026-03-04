@@ -45,26 +45,65 @@ public class Vaje1 {
             }
             System.out.print("\n");
         }
+
     }
 
+    static void trikotnikStevilVrsticeObrnjen(int visina){
+        for(int i=visina; i>0; i--){
+            System.out.println(((String.valueOf(i%10)).repeat(i)));
+        }
+    }
+
+    static void trikotnikStevilStolpciObrnjen(int visina){
+        for(int i=visina; i>0; i--){
+            for(int j=1; j<=i; j++){
+                System.out.print(j%10);
+            }
+            System.out.print("\n");
+        }
+    }
+
+    static void trikotnikStevil(int visina){
+        for(int i=1; i<=visina; i++){
+            System.out.print(" ".repeat(visina-i));
+            for(int j=1; j<=(2*i-1); j++){
+                System.out.print(j%10);
+            }
+            System.out.print("\n");
+        }
+    }
+
+    static void trikotnik(int odmik, int visina){
+        for(int i=1; i<=visina; i++){
+            System.out.print(" ".repeat(visina-i+odmik));
+            System.out.print("*".repeat(2*i-1));
+            System.out.print("\n");
+        }
+    }
+
+    static void trikotnikObrnjen(int odmik, int visina){
+        
+    }
+
+
+
     public static void main(String[] args){
+//        pravokotnikStevilVrstice(7,3);
+//        pravokotnikStevilStolpci(15,3);
+//        pravokotnik(5,7,3);
+//        trikotnikStevilVrstice(3);
+//        trikotnikStevilStolpci(3);
+//        trikotnikStevilVrsticeObrnjen(3);
+//        trikotnikStevilStolpciObrnjen(3);
+//        trikotnikStevil(5);
+        trikotnik(1,5);
 
-        System.out.println("\n1. Naloga, a)\n");
-        pravokotnikStevilVrstice(7,3);
 
-        System.out.println("\n1. Naloga, b) \n");
-        pravokotnikStevilStolpci(15,3);
 
-        System.out.println("\n1. Naloga, c) \n");
-        pravokotnik(5,7,3);
 
-        System.out.println("\n2. Naloga, a) \n");
-        trikotnikStevilVrstice(3);
 
-        System.out.println("\n2. Naloga, b) \n");
-        trikotnikStevilStolpci(3);
 
-        // change 1
+
 
 
 
