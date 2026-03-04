@@ -96,7 +96,13 @@ public class Kviz1 {
         return b == n;
     }
 
-    static
+    static boolean jePrastevilo(int n){
+
+        if (n < 0) return false;
+        for (int i = 2; i<n; i++){
+            if (n%i == 0) return false;
+        } return true;
+    }
 
 
     public static void main(String[] args){
