@@ -123,7 +123,21 @@ public class Kviz1 {
         return vsota;
 
     }
+    static int[] stik(int[] tabela1, int[] tabela2){
+        int d1 = tabela1.length; // dolzina 1. tabele
+        int d2 = tabela2.length; // dolzina 2. tabele
+        int skupno = d1 + d2; // skupna dolzina tabel (za iniciliziranje združene tabele)
+        int[] skupaj = new int[skupno];
+        for(int i = 0; i<d1; i++){
+            skupaj[i] = tabela1[i]; // zanka gre skozi vsak indeks v tabeli1 ter element na indeksu doda na mesto na indeksu v skupni tabeli
+        }
 
+        for(int i=0; i<d2; i++){
+            skupaj[i+d1] = tabela2[i]; // podobno kot pri prvi zanki, vendar da elemente zanka dodaja v skupno tabelo z odmikom, ki je enak dolžini tabele1
+        }
+
+        return skupaj;
+    }
 
     public static void main(String[] args){
         //kalkulator(42, 13);
