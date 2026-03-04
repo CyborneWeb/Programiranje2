@@ -139,6 +139,20 @@ public class Kviz1 {
         return skupaj;
     }
 
+    static int[] presek(int[] tabela1, int[] tabela2) {
+        int[] preseki = new int[tabela1.length + tabela2.length];
+        int indeks = 0;
+        for (int i = 0; i < tabela1.length; i++) {
+            for (int j = 0; j < tabela2.length; j++) {
+                if (tabela1[i] == tabela2[j]) {
+                    preseki[indeks] = tabela1[i];
+                    indeks++;
+                }
+            }
+        }
+        return preseki;
+    }
+
     public static void main(String[] args){
         //kalkulator(42, 13);
         //nicli(1, 2, 2);
