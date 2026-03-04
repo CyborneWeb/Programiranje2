@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Kviz1 {
 
     public static void krog(double r, int d){
@@ -140,15 +142,29 @@ public class Kviz1 {
     }
 
     static int[] presek(int[] tabela1, int[] tabela2) {
-        int[] preseki = new int[tabela1.length + tabela2.length];
+        int[] temp = new int[tabela1.length + tabela2.length];
         int indeks = 0;
         for (int i = 0; i < tabela1.length; i++) {
-            for (int j = 0; j < tabela2.length; j++) {
-                if (tabela1[i] == tabela2[j]) {
-                    preseki[indeks] = tabela1[i];
-                    indeks++;
+            boolean zeDodan = false;
+            for (int k = 0; k < indeks; k++) {
+                if (temp[k] == tabela1[i]) {
+                    zeDodan = true;
+                    break;
                 }
             }
+            if (!zeDodan) {
+                for (int j = 0; j < tabela2.length; j++) {
+                    if (tabela1[i] == tabela2[j]) {
+                        temp[indeks] = tabela1[i];
+                        indeks++;
+                        break;
+                    }
+                }
+            }
+        }
+        int[] preseki = new int[indeks];
+        for (int i = 0; i < indeks; i++) {
+            preseki[i] = temp[i];
         }
         return preseki;
     }
