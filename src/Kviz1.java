@@ -104,12 +104,34 @@ public class Kviz1 {
         } return true;
     }
 
+    static int vsotaPrvih(int n){
+        int st_prastevil = 0;
+        int vsota = 0;
+        int stevilo = 2;
+
+
+        while (st_prastevil < n) {
+
+            if (jePrastevilo(stevilo)){
+                vsota += stevilo;
+                st_prastevil++;
+            }
+            stevilo++;
+
+
+        }
+        return vsota;
+
+    }
+
 
     public static void main(String[] args){
         //kalkulator(42, 13);
         //nicli(1, 2, 2);
         //System.out.println(pretvoriSekunde(65));
-        javaJavaJava(3);
+        //javaJavaJava(3);
+
+        System.out.println(vsotaPrvih(10));
 
     }
 }
