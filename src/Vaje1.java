@@ -82,8 +82,39 @@ public class Vaje1 {
     }
 
     static void trikotnikObrnjen(int odmik, int visina){
-        
+        for(int i=visina; i>0; i--){
+            System.out.print(" ".repeat(visina-i+odmik));
+            System.out.print("*".repeat(2*i-1));
+            System.out.print("\n");
+        }
+
     }
+
+    // 3. NALOGA
+
+    static void romb(int odmik, int velikost){
+        trikotnik(odmik, velikost);
+        trikotnikObrnjen(odmik+1, velikost-1);
+    }
+
+    // 4. NALOGA
+
+    static void smreka(int v){
+        int velikost = 0;
+        for(int i=1; i<=v; i++){
+            velikost = 2*i;
+            trikotnik(2*v-velikost,velikost);
+        }
+        int sirina;
+        if (v%2==0){
+            sirina = v+1;
+        } else sirina = v;
+
+
+        pravokotnik(2*v-2, sirina, 2*v);
+    }
+
+
 
 
 
@@ -96,7 +127,15 @@ public class Vaje1 {
 //        trikotnikStevilVrsticeObrnjen(3);
 //        trikotnikStevilStolpciObrnjen(3);
 //        trikotnikStevil(5);
-        trikotnik(1,5);
+//        trikotnik(1,5);
+//        trikotnikObrnjen(1,5);
+
+//        romb(2, 5);
+
+        smreka(3);
+
+
+
 
 
 
