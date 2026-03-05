@@ -30,9 +30,6 @@ public class DN03 {
 
             geslo += naklj_beseda.charAt(rnd.nextInt(naklj_beseda.length())); // izbira nakljucnega znaka iz izbrane besede ter dodajanje geslu
 
-
-
-
         }
         System.out.println(geslo); // izpis pridobljenega gesla
 
