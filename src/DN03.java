@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class DN03 {
     public static void main(String[] args) throws Exception{
-        args = new String[]{"gesla.txt", "10", "100"};
+        //args = new String[]{"gesla.txt", "10", "100"}; // statična tabela args za testiranje
+
+        // ustvarjanje objekta Scanner, ki bo bral iz datoteke z imenom, ki je podan v argumentih
         Scanner sc = new Scanner(new File(args[0]));
 
 
@@ -13,21 +15,25 @@ public class DN03 {
         String[] besede = new String[n];
 
 
-        
+        // polnenje tabele z besedami iz datoteke
         for (int i = 0; i < n; i++) {
             besede[i] = sc.nextLine();
         }
 
-
+        // prazni "placeholder" string za geslo
         String geslo = "";
-        Random rnd = new Random(Integer.parseInt(args[2]));
+
+        Random rnd = new Random(Integer.parseInt(args[2])); // ustvarjanje objekta rnd, z uporabo semena iz argumentov
+
         for (int i = 0; i<Integer.parseInt(args[1]);i++){
-            String naklj_beseda = besede[rnd.nextInt(besede.length)];
-            char nakljucna_crka = naklj_beseda.charAt(rnd.nextInt(naklj_beseda.length()));
-            geslo += nakljucna_crka;
+            String naklj_beseda = besede[rnd.nextInt(besede.length)]; // izbira nakljucne besede
+            char nakljucna_crka = naklj_beseda.charAt(rnd.nextInt(naklj_beseda.length())); // izbira nakljucnega znaka iz izbrane besede
+
+
+            geslo += nakljucna_crka; // dodajanje izbranega znaka geslu
 
         }
-        System.out.println(geslo);
+        System.out.println(geslo); // izpis pridobljenega gesla
 
 
     }
