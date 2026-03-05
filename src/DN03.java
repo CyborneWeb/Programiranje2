@@ -3,10 +3,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class DN03 {
-    public static void main(String[] args)throws Exception{
+    public static void main(String[] args) throws Exception{
         args = new String[]{"gesla.txt", "10", "100"};
         Scanner sc = new Scanner(new File(args[0]));
 
+
+        // pridobitev števila besed iz prve vrstice v datoteki ter ustvarjanje tabele "besede"
         int n = sc.nextInt(); sc.nextLine();
         String[] besede = new String[n];
 
