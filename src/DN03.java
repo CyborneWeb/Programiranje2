@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DN03 {
     public static void main(String[] args) throws Exception{
-        //args = new String[]{"gesla.txt", "10", "100"}; // statična tabela args za testiranje
+        //args = new String[]{"gesla.txt", "10", "100"};
 
         // ustvarjanje objekta Scanner, ki bo bral iz datoteke z imenom, ki je podan v argumentih
         Scanner sc = new Scanner(new File(args[0]));
@@ -20,7 +20,7 @@ public class DN03 {
             besede[i] = sc.nextLine();
         }
 
-        // prazni "placeholder" string za geslo
+        // praznen "placeholder" string za geslo
         String geslo = "";
 
         Random rnd = new Random(Integer.parseInt(args[2])); // ustvarjanje objekta rnd, z uporabo semena iz argumentov
