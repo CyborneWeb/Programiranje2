@@ -27,10 +27,11 @@ public class DN03 {
 
         for (int i = 0; i<Integer.parseInt(args[1]);i++){
             String naklj_beseda = besede[rnd.nextInt(besede.length)]; // izbira nakljucne besede
-            char nakljucna_crka = naklj_beseda.charAt(rnd.nextInt(naklj_beseda.length())); // izbira nakljucnega znaka iz izbrane besede
+
+            geslo += naklj_beseda.charAt(rnd.nextInt(naklj_beseda.length())); // izbira nakljucnega znaka iz izbrane besede ter dodajanje geslu
 
 
-            geslo += nakljucna_crka; // dodajanje izbranega znaka geslu
+
 
         }
         System.out.println(geslo); // izpis pridobljenega gesla
