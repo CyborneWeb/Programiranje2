@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.lang.Math;
 
 public class Kviz1 {
 
@@ -168,14 +169,64 @@ public class Kviz1 {
         }
         return preseki;
     }
+    static void praDvojcek(int n){
+        int naj_pra = 2;
+        for (int i=2; i<=n; i++){
+            if (jePrastevilo(i)){
+
+                if((i - naj_pra)==2){
+                    System.out.printf("(%d, %d)\n", naj_pra, i);
+                }
+                naj_pra = i;
+
+            }
+        }
+    }
+
+    static void veckratnikDeljitelj(int a, int b){
+        if (Math.min(a, b) == 0){
+            System.out.println("Napaka: obe števili morata biti različni od nič.");
+            return;
+        }
+
+        // največji skupni deljitelj
+        boolean najden_deljitelj = false;
+        for (int i = Math.max(a,b); i>0; i--){
+            if (a%i == 0 && b%i == 0 && !najden_deljitelj){
+
+                System.out.printf("Največji skupni delitelj je %d.\n", i);
+                najden_deljitelj = true;
+
+            }
+
+        }
+
+        // najmanjši skupni večkratnik
+        boolean najden_veckratnik = false;
+        int st=1;
+        while(!najden_veckratnik){
+            if (st%a == 0 && st%b == 0){
+                System.out.printf("Najmanjši skupni večkratnik je %d.\n", st);
+                najden_veckratnik = true;
+                return;
+            }
+            st++;
+        }
+    }
 
     public static void main(String[] args){
-        //kalkulator(42, 13);
-        //nicli(1, 2, 2);
-        //System.out.println(pretvoriSekunde(65));
-        //javaJavaJava(3);
+//        kalkulator(42, 13);
+//        nicli(1, 2, 2);
+//        System.out.println(pretvoriSekunde(65));
+//        javaJavaJava(3);
 
-        System.out.println(vsotaPrvih(10));
+//        System.out.println(vsotaPrvih(10));
+//        praDvojcek(20);
+        veckratnikDeljitelj(6, 14);
+
+
+
+
 
     }
 }
