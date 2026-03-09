@@ -10,9 +10,27 @@ public class Vaje2 {
     }
 
     static long stirling(int n){
-        long rezultat = (long) (Math.sqrt(2*Math.PI * n)  * Math.pow((n/Math.E), n));
+        long rezultat = (long) Math.round(Math.sqrt(2*Math.PI * n)  * Math.pow((n/Math.E), n));
 
         return rezultat;
+    }
+
+    static void izpis(){
+        System.out.printf("%3s %15s %22s %15s\n", "n", "n!", "Stirling(n)", "napaka (%)");
+        System.out.println("-".repeat(58));
+
+        for(int i = 1; i<=20; i++){
+            long f = fakulteta(i);
+            long s = stirling(i);
+
+            // relativna napaka
+
+            double napaka = 100.0 * (f-s) / f;
+
+            System.out.printf("%3d %20d %20d %11.7f\n", i, f, s, napaka);
+
+
+        }
     }
 
 
@@ -22,6 +40,9 @@ public class Vaje2 {
         // NALOGA 1 - klici funckij:
 
         System.out.println(fakulteta(5));
+        System.out.println(stirling(5));
+
+        izpis();
 
 
 
