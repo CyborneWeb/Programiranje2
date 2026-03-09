@@ -15,7 +15,7 @@ public class Vaje2 {
         return rezultat;
     }
 
-    static void izpis(){
+    static void izpis20(){
         System.out.printf("%3s %15s %22s %15s\n", "n", "n!", "Stirling(n)", "napaka (%)");
         System.out.println("-".repeat(58));
 
@@ -42,7 +42,18 @@ public class Vaje2 {
         System.out.println(fakulteta(5));
         System.out.println(stirling(5));
 
-        izpis();
+        izpis20();
+
+        // poskus - do katere vrendosti n je tip "long" primeren za izračun fakultete
+        for(int i = 1; i<10000000; i++){
+            long f = fakulteta(i);
+            if (f <= 0) {
+                System.out.printf("long preliv pri n = %d\n", i);
+                break;
+            }
+            System.out.printf("%d %d\n", i, f); //pri n=21 je število že preveliko za tip long...
+        }
+
 
 
 
