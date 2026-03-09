@@ -34,7 +34,7 @@ public class Vaje2 {
 
 
     // izpis20 (z celoštevilskimi tipi podatkov) ter izpis100 z približki v tipu "double"
-    
+
     static void izpis20(){
         System.out.printf("%3s %15s %22s %15s\n", "n", "n!", "Stirling(n)", "napaka (%)");
         System.out.println("-".repeat(58));
@@ -45,7 +45,7 @@ public class Vaje2 {
 
             // relativna napaka
 
-            double napaka = 100.0 * (f-s) / f;
+            double napaka = 100.0 * (f-s) / f; // napaka postaja vedno manjša večje kot so vrednosti fakultet
 
             System.out.printf("%3d %20d %20d %11.7f\n", i, f, s, napaka);
 
@@ -86,6 +86,7 @@ public class Vaje2 {
         izpis20();
 
         // NALOGA 3 - poskus - do katere vrendosti n je tip "long" primeren za izračun fakultete
+
         for(int i = 1; i<100; i++){
             long f = fakulteta(i);
             if (f <= 0) {
@@ -101,7 +102,8 @@ public class Vaje2 {
 
         System.out.printf("%7.3E\n", stirlingD(100));
 
-
+        // NALOGA 5 - klic funkcije izpis100 za izris tabele z vrednostnmi in relativno napako
+        
         izpis100();
 
 
