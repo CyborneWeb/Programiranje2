@@ -28,6 +28,10 @@ public class Vaje2 {
         return rezultat;
     }
 
+    static double stirlingD(int n){
+        return Math.sqrt(2*Math.PI * n)  * Math.pow((n/Math.E), n);
+    };
+
     static void izpis20(){
         System.out.printf("%3s %15s %22s %15s\n", "n", "n!", "Stirling(n)", "napaka (%)");
         System.out.println("-".repeat(58));
@@ -69,9 +73,11 @@ public class Vaje2 {
             System.out.printf("%d %d\n", i, f); //pri n=21 je število že preveliko za tip long...
         }
 
-        // NALOGA 4 - izpisi z približki v realnih številih
+        // NALOGA 4 - izpisi z približki v realnih številih tipa "double"
 
-        System.out.printf("%7.3E", fakultetaD(100));
+        System.out.printf("%7.3E\n", fakultetaD(100));
+
+        System.out.printf("%7.3E\n", stirlingD(100));
 
 
 
