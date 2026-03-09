@@ -34,6 +34,7 @@ public class Vaje2 {
 
 
     // izpis20 (z celoštevilskimi tipi podatkov) ter izpis100 z približki v tipu "double"
+    
     static void izpis20(){
         System.out.printf("%3s %15s %22s %15s\n", "n", "n!", "Stirling(n)", "napaka (%)");
         System.out.println("-".repeat(58));
@@ -58,7 +59,11 @@ public class Vaje2 {
 
         for (int i = 1; i<=100; i++){
             double f = fakultetaD(i);
-            System.out.printf("%3d %17.9E\n", i, f);
+            double s = stirlingD(i);
+
+            double napaka = 100.0 * (f-s) / f;
+
+            System.out.printf("%3d %17.9E %17.9E %11.7f\n", i, f, s, napaka);
 
         }
 
@@ -99,6 +104,6 @@ public class Vaje2 {
 
         izpis100();
 
-        
+
     }
 }
