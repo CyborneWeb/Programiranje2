@@ -32,6 +32,8 @@ public class Vaje2 {
         return Math.sqrt(2*Math.PI * n)  * Math.pow((n/Math.E), n);
     };
 
+
+    // izpis20 (z celoštevilskimi tipi podatkov) ter izpis100 z približki v tipu "double"
     static void izpis20(){
         System.out.printf("%3s %15s %22s %15s\n", "n", "n!", "Stirling(n)", "napaka (%)");
         System.out.println("-".repeat(58));
@@ -49,6 +51,21 @@ public class Vaje2 {
 
         }
     }
+
+    static void izpis100(){
+        System.out.printf("%3s %10s %22s %14s\n", "n", "n!", "Stirling(n)", "napaka (%)");
+        System.out.println("-".repeat(52));
+
+        for (int i = 1; i<=100; i++){
+            double f = fakultetaD(i);
+            System.out.printf("%3d %17.9E\n", i, f);
+
+        }
+
+
+    }
+
+
 
 
     public static void main(String[] args){
@@ -80,9 +97,8 @@ public class Vaje2 {
         System.out.printf("%7.3E\n", stirlingD(100));
 
 
+        izpis100();
 
-
-
-
+        
     }
 }
