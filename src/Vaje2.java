@@ -64,14 +64,8 @@ public class Vaje2 {
             double napaka = 100.0 * (f-s) / f;
 
             System.out.printf("%3d %17.9E %17.9E %11.7f\n", i, f, s, napaka);
-
         }
-
-
     }
-
-
-
 
     public static void main(String[] args){
 
