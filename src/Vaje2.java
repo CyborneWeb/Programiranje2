@@ -3,9 +3,9 @@ public class Vaje2 {
     // izračuni z celoštevilski tipi "long"
 
     static long fakultetaL(int n){
-        long rezultat = n;
+        long rezultat = 1;
 
-        for (int i=n-1; i>0; i--){
+        for (int i=2; i<=n; i++){
             rezultat *= i;
         }
         return rezultat;
@@ -20,9 +20,9 @@ public class Vaje2 {
     // izračuni z približkom v realni vrednosti "double"
 
     static double fakultetaD(int n){
-        double rezultat = n;
+        double rezultat = 1;
 
-        for (int i=n-1; i>0; i--){
+        for (int i=2; i<=n; i++){
             rezultat *= i;
         }
         return rezultat;
