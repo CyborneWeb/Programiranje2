@@ -2,7 +2,7 @@ public class Vaje2 {
 
     // izračuni z celoštevilski tipi "long"
 
-    static long fakulteta(int n){
+    static long fakultetaL(int n){
         long rezultat = n;
 
         for (int i=n-1; i>0; i--){
@@ -11,7 +11,7 @@ public class Vaje2 {
         return rezultat;
     }
 
-    static long stirling(int n){
+    static long stirlingL(int n){
         long rezultat = (long) Math.round(Math.sqrt(2*Math.PI * n)  * Math.pow((n/Math.E), n));
 
         return rezultat;
@@ -40,8 +40,8 @@ public class Vaje2 {
         System.out.println("-".repeat(58));
 
         for(int i = 1; i<=20; i++){
-            long f = fakulteta(i);
-            long s = stirling(i);
+            long f = fakultetaL(i);
+            long s = stirlingL(i);
 
             // relativna napaka
 
@@ -72,8 +72,8 @@ public class Vaje2 {
 
         // NALOGA 1 - klici funckij "fakulteta" in "stirling":
 
-        System.out.println(fakulteta(5));
-        System.out.println(stirling(5));
+        System.out.println(fakultetaL(5));
+        System.out.println(stirlingL(5));
 
         // NALOGA 2 - izpis prvih 20 fakultet
 
@@ -82,7 +82,7 @@ public class Vaje2 {
         // NALOGA 3 - poskus - do katere vrendosti n je tip "long" primeren za izračun fakultete
 
         for(int i = 1; i<100; i++){
-            long f = fakulteta(i);
+            long f = fakultetaL(i);
             if (f <= 0) {
                 System.out.printf("long preliv pri n = %d\n", i);
                 break;
