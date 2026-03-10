@@ -222,7 +222,7 @@ public class Kviz1 {
 
 //        System.out.println(vsotaPrvih(10));
 //        praDvojcek(20);
-        veckratnikDeljitelj(6, 14);
+//        veckratnikDeljitelj(6, 14);
 
 
 
