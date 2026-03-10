@@ -76,7 +76,7 @@ public class Vaje2 {
     public static void main(String[] args){
 
 
-        // NALOGA 1 - klici funckij:
+        // NALOGA 1 - klici funckij "fakulteta" in "stirling":
 
         System.out.println(fakulteta(5));
         System.out.println(stirling(5));
@@ -103,7 +103,7 @@ public class Vaje2 {
         System.out.printf("%7.3E\n", stirlingD(100));
 
         // NALOGA 5 - klic funkcije izpis100 za izris tabele z vrednostnmi in relativno napako
-        
+
         izpis100();
 
 
