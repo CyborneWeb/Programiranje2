@@ -226,10 +226,12 @@ public class Kviz1 {
             System.out.printf("Število %d ni število v osmiškem sistemu (števka 8)", n);
             return;
         }
+        // pretvorba
+        
         int rezultat = 0;
         int indeks = 0;
         for (int i = Integer.toString(n).length() - 1; i>=0; i--){
-            rezultat += Integer.parseInt(String.valueOf(Integer.toString(n).charAt(indeks))) * Math.pow(8, i); // hope this works lmao
+            rezultat += Integer.parseInt(String.valueOf(Integer.toString(n).charAt(indeks))) * Math.pow(8, i); // hope this works lmao, Edit: it works :)
             indeks++;
 
         }
