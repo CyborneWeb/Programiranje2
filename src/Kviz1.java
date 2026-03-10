@@ -239,6 +239,13 @@ public class Kviz1 {
     }
 
     static String izracunajRazliko(String prviCas, String drugiCas){
+        String[] cas1 = prviCas.split(":");
+        String[] cas2 = drugiCas.split(":");
+
+        int sekunde1 = Integer.parseInt(cas1[0]) * 3600 + Integer.parseInt(cas1[1]) * 60 + Integer.parseInt(cas1[2]);
+        int sekunde2 = Integer.parseInt(cas2[0]) * 3600 + Integer.parseInt(cas2[1]) * 60 + Integer.parseInt(cas2[2]);
+
+        return pretvoriSekunde(Math.abs(sekunde1 - sekunde2));
 
     }
 
