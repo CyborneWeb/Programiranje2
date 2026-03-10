@@ -227,7 +227,7 @@ public class Kviz1 {
             return;
         }
         // pretvorba
-        
+
         int rezultat = 0;
         int indeks = 0;
         for (int i = Integer.toString(n).length() - 1; i>=0; i--){
@@ -236,6 +236,10 @@ public class Kviz1 {
 
         }
         System.out.printf("%d(8) = %d(10)", n, rezultat);
+    }
+
+    static String izracunajRazliko(String prviCas, String drugiCas){
+
     }
 
     public static void main(String[] args){
@@ -247,7 +251,8 @@ public class Kviz1 {
 //        System.out.println(vsotaPrvih(10));
 //        praDvojcek(20);
 //        veckratnikDeljitelj(6, 14);
-        vDesetisko(127);
+//        vDesetisko(127);
+
 
 
 
