@@ -1,4 +1,4 @@
-# Programiranje 2 / Programming 2
+# Programiranje 2 / Programming 2 - 2025/2026
 
 📚 Solutions to exercises and homework for the **Programiranje 2** course at **FRI**.
 
