@@ -214,6 +214,28 @@ public class Kviz1 {
         }
     }
 
+    static void vDesetisko(int n){
+        // osnovni checki
+
+        if (Integer.toString(n).contains("9")){
+            System.out.printf("Število %d ni število v osmiškem sistemu (števka 9)", n);
+            return;
+        }
+
+        if (Integer.toString(n).contains("8")){
+            System.out.printf("Število %d ni število v osmiškem sistemu (števka 8)", n);
+            return;
+        }
+        int rezultat = 0;
+        int indeks = 0;
+        for (int i = Integer.toString(n).length() - 1; i>=0; i--){
+            rezultat += Integer.parseInt(String.valueOf(Integer.toString(n).charAt(indeks))) * Math.pow(8, i); // hope this works lmao
+            indeks++;
+
+        }
+        System.out.printf("%d(8) = %d(10)", n, rezultat);
+    }
+
     public static void main(String[] args){
 //        kalkulator(42, 13);
 //        nicli(1, 2, 2);
@@ -223,6 +245,7 @@ public class Kviz1 {
 //        System.out.println(vsotaPrvih(10));
 //        praDvojcek(20);
 //        veckratnikDeljitelj(6, 14);
+        vDesetisko(127);
 
 
 
