@@ -1,0 +1,13 @@
+void main() {
+    System.out.println(" ____             _                 _  _              ");
+    System.out.println("|  _ \\ ___ ______| |_ __ __ ___   _| |(_) ___ _ __    ");
+    System.out.println("| |_) / _ \\_  / _` | '__/ _` \\ \\ / / || |/ _ \\ '_ \\   ");
+    System.out.println("|  __/ (_) / / (_| | | | (_| |\\ V /| || |  __/ | | |_ ");
+    System.out.println("|_|  _\\___/___\\__,_|_|  \\__,_| \\_/ |_|/ |\\___|_| |_( )");
+    System.out.println("|  \\/  | __ _| |_(_) ___            |__/           |/ ");
+    System.out.println("| |\\/| |/ _` | __| |/ __|                             ");
+    System.out.println("| |  | | (_| | |_| | (__                              ");
+    System.out.println("|_|  |_|\\__,_|\\__|_|\\___|                             ");
+}
+
+
