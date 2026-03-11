@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Kviz2 {
 
     // Naloga 1 - 1 točka
@@ -53,9 +55,49 @@ public class Kviz2 {
         return result;
     }
 
+    public static int[] duplikati(int[] tabela){
+        java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
+
+        for (int i = 0; i<tabela.length; i++){
+            if (!(list.contains(tabela[i]))){
+                list.add(tabela[i]);
+            }
+        }
+
+        int[] rezultat = new int[list.size()];
+
+        for (int i = 0; i < list.size(); i++) {
+            rezultat[i] = list.get(i);
+        }
+
+        return rezultat;
+
+    }
+
+    static void rotiraj(int[] tabela, int k){
+        int[] rotirano = new int[tabela.length]; // placeholder tabela
+
+        for ( int i = 0; i<tabela.length; i++){
+            rotirano[i] = (tabela[(i + k) % tabela.length]);
+
+        }
+
+        for (int i = 0; i < tabela.length; i++){
+            tabela[i] = rotirano[i];
+        }
+    }
+
+    static int vsotaSkupnihCifer(int a, int b){
+        
+    }
+
     public static void main(String[] args){
 
         System.out.println(vsotaStevk("1a2c"));
+
+        System.out.println(Arrays.toString(duplikati(new int[]{1, 2, 3, 8, 9, 10, 11, 4, 5, 6, 4, 2, 2, 3, 6,})));
+
+        rotiraj(new int[]{1, 2, 3, 4, 5}, 2);
 
     }
 }
