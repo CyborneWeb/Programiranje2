@@ -31,6 +31,21 @@ public class Kviz2 {
         return false;
     }
 
+    public static int[] range(int a, int b, int c) {
+        java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
+
+        for (int i = a; i < b; i += c) {
+            list.add(i);
+        }
+
+        int[] result = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
+        }
+
+        return result;
+    }
+
     public static void main(String[] args){
 
         System.out.println(vsotaStevk("1a2c"));
