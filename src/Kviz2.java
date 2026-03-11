@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Kviz2 {
 
@@ -152,6 +153,50 @@ public class Kviz2 {
 
     }
 
+    static int prevoriBinarno(String binary){
+        int decimal = 0;
+        int length = binary.length();
+
+        for (int i = 0; i < length; i++){
+            decimal += Integer.parseInt(String.valueOf(binary.charAt(i))) * Math.pow(2, length - 1 - i);
+        }
+
+        return decimal;
+    }
+
+    static String binarnoSestej(String s, String b){
+
+        java.util.ArrayList<Integer> binary_digits = new java.util.ArrayList<>();
+
+        int dec1 = prevoriBinarno(s);
+        int dec2 = prevoriBinarno(b);
+
+        int vsota_dec = dec1 + dec2; // sestevanje decimalnih vrednosti
+
+
+        // pretvarjanje vsote nazaj v binarno
+        while(vsota_dec > 0){
+            int ostanek = vsota_dec % 2;
+            binary_digits.add(ostanek);
+            vsota_dec /= 2;
+
+
+        }
+
+
+        // obrne seznam da dobimo pravilno zaporedje binarnih števk
+        java.util.Collections.reverse(binary_digits);
+
+        String final_binary = "";
+
+        for (int i = 0; i<binary_digits.size(); i++){
+            final_binary += Integer.toString(binary_digits.get(i));
+        }
+
+
+
+        return final_binary;
+    }
 
 
 
@@ -168,6 +213,8 @@ public class Kviz2 {
         rotiraj(new int[]{1, 2, 3, 4, 5}, 2);
 
         fibo(1);
+
+        System.out.println(binarnoSestej("10011010010", "1000011100001"));
 
     }
 }
