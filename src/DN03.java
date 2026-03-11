@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class DN03 {
     public static void main(String[] args) throws Exception{
+
         //args = new String[]{"gesla.txt", "10", "100"};
+
         // ustvarjanje objekta Scanner, ki bo bral iz datoteke z imenom, ki je podan v argumentih
         Scanner sc = new Scanner(new File(args[0]));
         // pridobitev števila besed iz prve vrstice v datoteki ter ustvarjanje tabele "besede"
@@ -23,6 +25,6 @@ public class DN03 {
 
             geslo += naklj_beseda.charAt(rnd.nextInt(naklj_beseda.length())); // izbira nakljucnega znaka iz izbrane besede ter dodajanje geslu
         }
-        System.out.println(geslo); // izpis pridobljenega gesla
+        System.out.println(geslo);
     }
 }
