@@ -1,4 +1,7 @@
 public class Kviz2 {
+    
+    // Naloga 1 - 1 točka
+
     static int vsotaStevk(String str){
         int vsota = 0;
         for (int i = 0; i<str.length(); i++){
@@ -9,6 +12,8 @@ public class Kviz2 {
         }
         return vsota;
     }
+
+    // Naloga 2 - 1 točka
 
     static boolean preveriRep(String a, String b){
         String[] besede = a.split(" ");
