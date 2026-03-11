@@ -36,7 +36,7 @@ public class Kviz2 {
         return false;
     }
 
-    // Naloga 3 - 1 točka 
+    // Naloga 3 - 1 točka
 
     public static int[] range(int a, int b, int c) {
         java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
