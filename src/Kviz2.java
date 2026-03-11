@@ -88,7 +88,22 @@ public class Kviz2 {
     }
 
     static int vsotaSkupnihCifer(int a, int b){
-        
+        java.util.ArrayList<Integer> usedDigits = new java.util.ArrayList<>();
+
+
+        int vsota = 0;
+        for (int i = 0; i<Integer.toString(a).length(); i++){
+
+            String digit = String.valueOf(Integer.toString(a).charAt(i));
+            if (Integer.toString(b).contains(digit) && !usedDigits.contains(Integer.parseInt(digit))){
+                vsota += Integer.parseInt(digit);
+                usedDigits.add(Integer.parseInt(digit));
+
+            }
+        }
+
+        return vsota;
+
     }
 
     public static void main(String[] args){
