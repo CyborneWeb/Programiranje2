@@ -67,6 +67,22 @@ public class Vaje2 {
         }
     }
 
+    static double izracunajPiNilakantha(int k){
+        double vsota = 3.0;
+
+        for (int i = 1; i<k; i++){
+            double imenovalec = (2.0*i) * (2.0*i + 1) * (2.0*i + 2);
+
+            if (i%2 == 1){
+                vsota += (4.0/imenovalec);
+            } else {
+                vsota -= (4.0/imenovalec);
+            }
+        }
+
+        return vsota;
+    }
+
     public static void main(String[] args){
 
 
@@ -99,6 +115,8 @@ public class Vaje2 {
         // NALOGA 5 - klic funkcije izpis100 za izris tabele z vrednostnmi in relativno napako
 
         izpis100();
+
+        System.out.println(izracunajPiNilakantha(2));
 
 
     }
