@@ -198,7 +198,30 @@ public class Kviz2 {
         return final_binary;
     }
 
+    static int[] pascal(int n){
+        int[] trenutna = new int[]{1};
 
+        int[] nova = new int[2];
+
+        for (int i = 2; i<=n; i++){
+            nova = new int[i];
+
+            // dodajanje enice na zacetek ter konec
+
+            nova[0] = 1; nova[nova.length - 1] = 1;
+
+            // racunanje vmesnih
+
+            for (int j = 1; j<=nova.length-2; j++){
+                nova[j] = trenutna[j-1] + trenutna[j];
+            }
+
+            trenutna = nova;
+        }
+
+        return trenutna;
+
+    }
 
 
 
