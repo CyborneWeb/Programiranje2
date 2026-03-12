@@ -88,7 +88,27 @@ public class Vaje2 {
     // Izpis PI ter Približek Pi z nilakanthavo vrsto
 
     static void izpisiPi(){
-        System.out.printf("%3s %10s %27s %11s", "k", "Math.PI", "PI (Nilakantha)", "razlika");
+        System.out.printf("%3s %10s %27s %11s\n", "k", "Math.PI", "PI (Nilakantha)", "razlika");
+        System.out.println("-----------------------------------------------------------------");
+
+        for (int k = 1; k<=22; k++){
+            double pi_priblizek = izracunajPiNilakantha(k);
+
+            float razlika = (float) (Math.PI - pi_priblizek);
+
+            String razlika_format;
+
+
+            if (razlika > 0) {
+                razlika_format = "+" + String.format("%.15f", razlika);
+            } else {
+                razlika_format = String.format("%.15f", razlika);
+            }
+
+
+            System.out.printf("%3d %19.15f %19.15f %20s\n", k, Math.PI, pi_priblizek, razlika_format);
+        }
+
     }
 
     public static void main(String[] args){
@@ -127,6 +147,8 @@ public class Vaje2 {
         // DODATNA NALOGA - PRIBLIŽEK PI Z UPORABO NILAKANTHOVE VRSTE
 
         System.out.println(izracunajPiNilakantha(2));
+
+        izpisiPi();
 
 
     }
