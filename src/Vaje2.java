@@ -67,6 +67,8 @@ public class Vaje2 {
         }
     }
 
+    // Dodatne naloge
+
     static double izracunajPiNilakantha(int k){
         double vsota = 3.0;
 
@@ -81,6 +83,12 @@ public class Vaje2 {
         }
 
         return vsota;
+    }
+
+    // Izpis PI ter Približek Pi z nilakanthavo vrsto
+
+    static void izpisiPi(){
+        System.out.printf("%3s %10s %27s %11s", "k", "Math.PI", "PI (Nilakantha)", "razlika");
     }
 
     public static void main(String[] args){
@@ -115,6 +123,8 @@ public class Vaje2 {
         // NALOGA 5 - klic funkcije izpis100 za izris tabele z vrednostnmi in relativno napako
 
         izpis100();
+
+        // DODATNA NALOGA - PRIBLIŽEK PI Z UPORABO NILAKANTHOVE VRSTE
 
         System.out.println(izracunajPiNilakantha(2));
 
