@@ -5,7 +5,7 @@ public class Kviz2 {
 
     //\\// NALOGE ZA 1 TOČKO \\//\\
 
-    // Naloga 1 - 1 točka
+    // Naloga 1 - Vsota stevk
 
     static int vsotaStevk(String str){
         int vsota = 0;
@@ -18,7 +18,7 @@ public class Kviz2 {
         return vsota;
     }
 
-    // Naloga 2 - 1 točka
+    // Naloga 2 - Preveri Rep
 
     static boolean preveriRep(String a, String b){
         String[] besede = a.split(" ");
@@ -41,7 +41,7 @@ public class Kviz2 {
         return false;
     }
 
-    // Naloga 3 - 1 točka
+    // Naloga 3 - Range
 
     public static int[] range(int a, int b, int c) {
         java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
@@ -58,7 +58,7 @@ public class Kviz2 {
         return result;
     }
 
-    // Naloga 4 - 1 točka
+    // Naloga 4 - Rotiraj
 
     static void rotiraj(int[] tabela, int k){
         int[] rotirano = new int[tabela.length]; // placeholder tabela
@@ -73,7 +73,7 @@ public class Kviz2 {
         }
     }
 
-    // Naloga 5 - 1 točka
+    // Naloga 5 - Duplikati
 
     public static int[] duplikati(int[] tabela){
         java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
@@ -95,7 +95,7 @@ public class Kviz2 {
     }
 
 
-    // Naloga 8 - 1 točka
+    // Naloga 8 - vsota skupnih Cifer
 
     static int vsotaSkupnihCifer(int a, int b){
         java.util.ArrayList<Integer> usedDigits = new java.util.ArrayList<>();
@@ -115,6 +115,55 @@ public class Kviz2 {
         return vsota;
 
     }
+
+    // Naloga 16 - Kodiraj/Dekodiraj
+
+    static String kodiraj(String  vhod, int odmik){
+        String kodiran_niz = "";
+        for (int i = 0; i<vhod.length(); i++){
+            kodiran_niz += (char) (odmik + ((int) vhod.charAt(i)));
+        }
+        System.out.println(kodiran_niz);
+        return kodiran_niz;
+    }
+
+    static String dekodiraj(String  vhod, int odmik){
+        String dekodiran_niz = "";
+        for (int i = 0; i<vhod.length(); i++){
+            dekodiran_niz += (char) (((int) vhod.charAt(i)) - odmik);
+        }
+        System.out.println(dekodiran_niz);
+        return dekodiran_niz;
+    }
+
+    // Naloga 17 - Nicle spredaj
+
+    static int[] nicleSpredaj(int[] tabela){
+
+        java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
+        int[] rezultat = new int[tabela.length];
+
+        // 1. vse ničle postavimo spredaj
+
+        for (int i = 0; i<tabela.length; i++){
+            if (tabela[i] == 0) list.add(tabela[i]);
+        }
+
+        // 2. ostale vrednosti v seznam
+
+        for (int i = 0; i<tabela.length; i++){
+            if (tabela[i] != 0) list.add(tabela[i]);
+        }
+
+        // 3. Prekopiraj elemente iz ArrayList v int[]
+        for (int i = 0; i<list.size(); i++){
+            rezultat[i] = list.get(i);
+        }
+
+        return rezultat;
+    }
+
+
 
 
     //\\// NALOGE ZA 2 TOČKI \\//\\
@@ -152,6 +201,7 @@ public class Kviz2 {
         return vsota;
 
     }
+
 
     static int prevoriBinarno(String binary){
         int decimal = 0;
@@ -197,6 +247,8 @@ public class Kviz2 {
 
         return final_binary;
     }
+
+    //\\// NALOGE ZA 3 TOČKE \\//\\
 
     static int[] pascal(int n){
         int[] trenutna = new int[]{1};
