@@ -266,7 +266,7 @@ static int vsotaStevk(String str) {
 
 
             for (int i = 2; i <= n; i++) {
-                nova = new int[i];
+                int[] nova = new int[i];
 
                 // dodajanje enice na zacetek ter konec
 
