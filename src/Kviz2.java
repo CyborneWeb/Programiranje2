@@ -248,6 +248,29 @@ public class Kviz2 {
         return final_binary;
     }
 
+
+    static double koren(int x, int d){
+        double koren = 0;
+
+        for (int c = 1; c * c <= x; c++) {
+            koren = c;
+        }
+
+        // računanje decimalk
+
+        double prejsnja_dec = koren;
+        for (int i = 1; i <= d; i++){
+            for (int j=1; j<Math.pow(10, i); j++){
+                double decimalka = (prejsnja_dec + j / Math.pow(10, i));
+                if (decimalka * decimalka <= x && (decimalka + 1/Math.pow(10, i)) * (decimalka + 1/Math.pow(10, i)) > x){
+                    prejsnja_dec = decimalka;
+                    koren += decimalka * Math.pow(10, -i);
+                }
+            }
+        }
+        return koren;
+    }
+
     //\\// NALOGE ZA 3 TOČKE \\//\\
 
     static int[] pascal(int n){
@@ -281,15 +304,15 @@ public class Kviz2 {
 
     public static void main(String[] args){
 
-        System.out.println(vsotaStevk("1a2c"));
-
-        System.out.println(Arrays.toString(duplikati(new int[]{1, 2, 3, 8, 9, 10, 11, 4, 5, 6, 4, 2, 2, 3, 6,})));
-
-        rotiraj(new int[]{1, 2, 3, 4, 5}, 2);
-
-        fibo(1);
-
-        System.out.println(binarnoSestej("10011010010", "1000011100001"));
-
+//        System.out.println(vsotaStevk("1a2c"));
+//
+//        System.out.println(Arrays.toString(duplikati(new int[]{1, 2, 3, 8, 9, 10, 11, 4, 5, 6, 4, 2, 2, 3, 6,})));
+//
+//        rotiraj(new int[]{1, 2, 3, 4, 5}, 2);
+//
+//        fibo(1);
+//
+//        System.out.println(binarnoSestej("10011010010", "1000011100001"));
+        System.out.println(koren(15, 3));
     }
 }
