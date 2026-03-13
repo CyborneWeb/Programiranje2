@@ -56,9 +56,7 @@ static int vsotaStevk(String str) {
 
             }
 
-            for (int i = 0; i < tabela.length; i++) {
-                tabela[i] = rotirano[i];
-            }
+            System.arraycopy(rotirano, 0, tabela, 0, tabela.length);
         }
 
         // Naloga 5 - Duplikati
@@ -66,9 +64,9 @@ static int vsotaStevk(String str) {
         public static int[] duplikati(int[] tabela) {
             ArrayList<Integer> list = new ArrayList<>();
 
-            for (int i = 0; i < tabela.length; i++) {
-                if (!(list.contains(tabela[i]))) {
-                    list.add(tabela[i]);
+            for (int j : tabela) {
+                if (!(list.contains(j))) {
+                    list.add(j);
                 }
             }
 
@@ -133,14 +131,14 @@ static int vsotaStevk(String str) {
 
             // 1. vse ničle postavimo spredaj
 
-            for (int i = 0; i < tabela.length; i++) {
-                if (tabela[i] == 0) list.add(tabela[i]);
+            for (int j : tabela) {
+                if (j == 0) list.add(j);
             }
 
             // 2. ostale vrednosti v seznam
 
-            for (int i = 0; i < tabela.length; i++) {
-                if (tabela[i] != 0) list.add(tabela[i]);
+            for (int j : tabela) {
+                if (j != 0) list.add(j);
             }
 
             // 3. Prekopiraj elemente iz ArrayList v int[]
@@ -194,7 +192,7 @@ static int vsotaStevk(String str) {
             int length = binary.length();
 
             for (int i = 0; i < length; i++) {
-                decimal += Integer.parseInt(String.valueOf(binary.charAt(i))) * Math.pow(2, length - 1 - i);
+                decimal += (int) (Integer.parseInt(String.valueOf(binary.charAt(i))) * Math.pow(2, length - 1 - i));
             }
 
             return decimal;
@@ -225,8 +223,8 @@ static int vsotaStevk(String str) {
 
             String final_binary = "";
 
-            for (int i = 0; i < binary_digits.size(); i++) {
-                final_binary += Integer.toString(binary_digits.get(i));
+            for (Integer binaryDigit : binary_digits) {
+                final_binary += Integer.toString(binaryDigit);
             }
 
 
@@ -265,7 +263,7 @@ static int vsotaStevk(String str) {
         static int[] pascal(int n) {
             int[] trenutna = new int[]{1};
 
-            int[] nova = new int[2];
+
 
             for (int i = 2; i <= n; i++) {
                 nova = new int[i];
@@ -300,5 +298,6 @@ static int vsotaStevk(String str) {
 //        fibo(1);
 //
 //        System.out.println(binarnoSestej("10011010010", "1000011100001"));
-            IO.println(koren(15, 3));
+//            IO.println(koren(1, 3));
+
         }
