@@ -250,7 +250,7 @@ public class Kviz2 {
 
 
     static double koren(int x, int d) {
-        double koren = 0;
+        double koren = 0.0;
 
         // Integer part
         for (int c = 1; c * c <= x; c++) {
@@ -260,10 +260,10 @@ public class Kviz2 {
         // Decimal part
         for (int i = 1; i <= d; i++) {
             double korak = Math.pow(10, -i);
-
+            double osnova = koren;
+            
             for (int j = 1; j <= 9; j++) {
-                double kandidat = koren + j * korak;
-
+                double kandidat = osnova + j * korak;
                 if (kandidat * kandidat <= x) {
                     koren = kandidat;
                 } else {
