@@ -136,6 +136,7 @@ public class Vaje3 {
             for (int j = 0; j<abeceda.length; j++){
                 if (niz.charAt(i) == abeceda[j]){
                     kode[i] = kodeZnakov16bit[j];
+                    break;
                 }
             }
         }
