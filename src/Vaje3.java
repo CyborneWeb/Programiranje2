@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Vaje3 {
     private static final char crnaPika = '\u2B1B'; // črn kvadratek
@@ -65,7 +66,7 @@ public class Vaje3 {
             0b1100011101101010010100100101001001000010010000100100001011100111L,
             0b1100011101100010010100100100101001000110010000100100001011100111L,
             0b0011110001000010100000011000000110000001100000010100001000111100L,
-            0b1111111001000001010000010100000101111110010000000100000011100000L,                                                                 // P
+            0b1111111001000001010000010100000101111110010000000100000011100000L,                                                                 // TODO: dodaj znak P
             0b0111111010000001100000011000000110000001100010010111111000001000L,
             0b1111111001000001010000010100000101111110010001000100001011100111L,
             0b0111110110000011100000010111110000000010100000011100000110111110L,
@@ -91,8 +92,6 @@ public class Vaje3 {
 
 
     static void izpisi16bit(short kodaZnaka) {
-
-
         for (int vrstica = 0; vrstica < 4; vrstica++) {
             for (int stolpec = 0; stolpec < 4; stolpec++) {
                 int bitIndex = 15 - (vrstica * 4 + stolpec); // 15..0
@@ -106,6 +105,7 @@ public class Vaje3 {
 
     static void izpisi16bit(short[] nizZnakov){
 
+
         for(int vrstica=0; vrstica < 4; vrstica++) {
             for (int znak = 0; znak < nizZnakov.length; znak++) {
                 short koda_znaka = nizZnakov[znak];
@@ -113,11 +113,16 @@ public class Vaje3 {
                     int bitIndex = 15 - (vrstica * 4 + stolpec);
                     boolean prizgan = ((koda_znaka >> bitIndex) & 1) == 1;
                     System.out.print(prizgan ? crnaPika : belaPika);
-                }
-                System.out.print(belaPika); // presledek
+
+                } System.out.print(belaPika); // presledek
+
+
+
+
             }
             System.out.println();
         }
+
     }
 
     static void izpisi16bit(String niz){
@@ -129,7 +134,6 @@ public class Vaje3 {
             for (int j = 0; j<abeceda.length; j++){
                 if (niz.charAt(i) == abeceda[j]){
                     kode[i] = kodeZnakov16bit[j];
-                    break;
                 }
             }
         }
@@ -140,7 +144,7 @@ public class Vaje3 {
     static void izpisi64bit(long kodaZnaka){
         for (int vrstica = 0; vrstica < 8; vrstica++) {
             for (int stolpec = 0; stolpec < 8; stolpec++) {
-                int bitIndex = 63 - (vrstica * 8 + stolpec); // 63..0
+                int bitIndex = 63 - (vrstica * 8 + stolpec); // 15..0
                 boolean prizgan = ((kodaZnaka >> bitIndex) & 1) == 1;
                 System.out.print(prizgan ? crnaPika : belaPika);
             }
@@ -148,15 +152,72 @@ public class Vaje3 {
         }
     }
 
+    static void izpisi64bit(long[] nizZnakov){
+        for(int vrstica=0; vrstica < 8; vrstica++) {
+            for (int znak = 0; znak < nizZnakov.length; znak++) {
+                long koda_znaka = nizZnakov[znak];
+                for(int stolpec = 0; stolpec < 8; stolpec++){
+                    int bitIndex = 63 - (vrstica * 8 + stolpec);
+                    boolean prizgan = ((koda_znaka >> bitIndex) & 1) == 1;
+                    System.out.print(prizgan ? crnaPika : belaPika);
+
+                } System.out.print(belaPika); // presledek
+
+
+
+
+            }
+            System.out.println();
+        }
+    }
+
+
+    static void izpisi64bit(String niz){
+        long[] kode = new long[niz.length()];
+
+        niz = niz.toUpperCase();
+
+        for (int i = 0; i<niz.length();i++){
+            for (int j = 0; j<abeceda.length; j++){
+                if (niz.charAt(i) == abeceda[j]){
+                    kode[i] = kodeZnakov64bit[j];
+                }
+            }
+        }
+
+        izpisi64bit(kode);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public static void main(){
-        izpisi16bit((short)0b1111100111111001);
+//        izpisi16bit((short)0b1111100111111001);
+//
+//        izpisi16bit(new short[] {(short)0b1111100011101000, (short)0b1111100111111010, (short)0b1111010001001111});
+//
+//        izpisi16bit("DoRiFn");
+//
+//        izpisi64bit(0b0001100000100100010000100100001001111110010000100100001011100111L);
+//
+//
+//        izpisi64bit(4342219536296657468L);
+//
+//        izpisi64bit(new long[] {0b1111111101000001010000010100100001111000010010000100000011100000L, 0b0011000001010000000100000001000000010000000100000001000011111111L});
 
-        izpisi16bit(new short[] {(short)0b1111100011101000, (short)0b1111100111111010, (short)0b1111010001001111});
+        izpisi64bit("Skill issue");
+        izpisi64bit(-36525672788885761L);
 
-        izpisi16bit("DoRiFn");
 
-        izpisi64bit(0b0001100000100100010000100100001001111110010000100100001011100111L);
 
-        izpisi64bit(4342219536296657468L);
+
     }
 }
