@@ -143,8 +143,22 @@ public class Vaje3 {
         izpisi16bit(kode);
     }
 
+    static void izpisi64bit(long kodaZnaka){
+        for (int vrstica = 0; vrstica < 8; vrstica++) {
+            for (int stolpec = 0; stolpec < 8; stolpec++) {
+                int bitIndex = 63 - (vrstica * 8 + stolpec); // 15..0
+                boolean prizgan = ((kodaZnaka >> bitIndex) & 1) == 1;
+                System.out.print(prizgan ? crnaPika : belaPika);
+            }
+            System.out.println();
+        }
+    }
 
-    
+
+
+
+
+
 
 
 
@@ -157,6 +171,14 @@ public class Vaje3 {
         izpisi16bit(new short[] {(short)0b1111100011101000, (short)0b1111100111111010, (short)0b1111010001001111});
 
         izpisi16bit("DoRiFn");
+
+        izpisi64bit(0b0001100000100100010000100100001001111110010000100100001011100111L);
+
+
+        izpisi64bit(4342219536296657468L);
+
+
+
 
 
     }
