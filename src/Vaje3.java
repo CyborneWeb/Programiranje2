@@ -147,7 +147,7 @@ public class Vaje3 {
     static void izpisi64bit(long kodaZnaka){
         for (int vrstica = 0; vrstica < 8; vrstica++) {
             for (int stolpec = 0; stolpec < 8; stolpec++) {
-                int bitIndex = 63 - (vrstica * 8 + stolpec); // 15..0
+                int bitIndex = 63 - (vrstica * 8 + stolpec); // 63..0
                 boolean prizgan = ((kodaZnaka >> bitIndex) & 1) == 1;
                 System.out.print(prizgan ? crnaPika : belaPika);
             }
