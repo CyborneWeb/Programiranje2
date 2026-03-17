@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Vaje3 {
     private static final char crnaPika = '\u2B1B'; // črn kvadratek
