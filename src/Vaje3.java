@@ -92,8 +92,6 @@ public class Vaje3 {
 
 
     static void izpisi16bit(short kodaZnaka) {
-
-
         for (int vrstica = 0; vrstica < 4; vrstica++) {
             for (int stolpec = 0; stolpec < 4; stolpec++) {
                 int bitIndex = 15 - (vrstica * 4 + stolpec); // 15..0
@@ -154,6 +152,42 @@ public class Vaje3 {
         }
     }
 
+    static void izpisi64bit(long[] nizZnakov){
+        for(int vrstica=0; vrstica < 8; vrstica++) {
+            for (int znak = 0; znak < nizZnakov.length; znak++) {
+                long koda_znaka = nizZnakov[znak];
+                for(int stolpec = 0; stolpec < 8; stolpec++){
+                    int bitIndex = 63 - (vrstica * 8 + stolpec);
+                    boolean prizgan = ((koda_znaka >> bitIndex) & 1) == 1;
+                    System.out.print(prizgan ? crnaPika : belaPika);
+
+                } System.out.print(belaPika); // presledek
+
+
+
+
+            }
+            System.out.println();
+        }
+    }
+
+
+    static void izpisi64bit(String niz){
+        long[] kode = new long[niz.length()];
+
+        niz = niz.toUpperCase();
+
+        for (int i = 0; i<niz.length();i++){
+            for (int j = 0; j<abeceda.length; j++){
+                if (niz.charAt(i) == abeceda[j]){
+                    kode[i] = kodeZnakov64bit[j];
+                }
+            }
+        }
+
+        izpisi64bit(kode);
+    }
+
 
 
 
@@ -166,17 +200,20 @@ public class Vaje3 {
 
 
     public static void main(){
-        izpisi16bit((short)0b1111100111111001);
+//        izpisi16bit((short)0b1111100111111001);
+//
+//        izpisi16bit(new short[] {(short)0b1111100011101000, (short)0b1111100111111010, (short)0b1111010001001111});
+//
+//        izpisi16bit("DoRiFn");
+//
+//        izpisi64bit(0b0001100000100100010000100100001001111110010000100100001011100111L);
+//
+//
+//        izpisi64bit(4342219536296657468L);
+//
+//        izpisi64bit(new long[] {0b1111111101000001010000010100100001111000010010000100000011100000L, 0b0011000001010000000100000001000000010000000100000001000011111111L});
 
-        izpisi16bit(new short[] {(short)0b1111100011101000, (short)0b1111100111111010, (short)0b1111010001001111});
-
-        izpisi16bit("DoRiFn");
-
-        izpisi64bit(0b0001100000100100010000100100001001111110010000100100001011100111L);
-
-
-        izpisi64bit(4342219536296657468L);
-
+        izpisi64bit("Skill issue");
 
 
 
