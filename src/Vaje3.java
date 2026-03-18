@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Vaje3 {
@@ -90,54 +91,70 @@ public class Vaje3 {
             0
     };
 
+// VERZIJA 1
 
-    static void izpisi16bit(short kodaZnaka) {
-        for (int vrstica = 0; vrstica < 4; vrstica++) {
-            for (int stolpec = 0; stolpec < 4; stolpec++) {
-                int bitIndex = 15 - (vrstica * 4 + stolpec); // 15..0
-                boolean prizgan = ((kodaZnaka >> bitIndex) & 1) == 1;
-                System.out.print(prizgan ? crnaPika : belaPika);
-            }
-            System.out.println();
+//    static void izpisi16bit(short kodaZnaka) {
+//        for (int vrstica = 0; vrstica < 4; vrstica++) {
+//            for (int stolpec = 0; stolpec < 4; stolpec++) {
+//                int bitIndex = 15 - (vrstica * 4 + stolpec); // 15..0
+//                boolean prizgan = ((kodaZnaka >> bitIndex) & 1) == 1;
+//                System.out.print(prizgan ? crnaPika : belaPika);
+//            }
+//            System.out.println();
+//        }
+//    }
+
+
+// VERZIJA 2
+
+    static void izpisi16bit(short kodaZnaka){
+        for (int i = 15; i>=0; i--){
+            boolean prizgan = ((kodaZnaka >> i) & 1) == 1;
+            System.out.print(prizgan ? crnaPika : belaPika);
+            if (i % 4 == 0 && i != 15) System.out.println();
         }
     }
 
 
+//    static void izpisi16bit(short[] nizZnakov){
+//        for(int vrstica=0; vrstica < 4; vrstica++) {
+//            for (int znak = 0; znak < nizZnakov.length; znak++) {
+//                short koda_znaka = nizZnakov[znak];
+//                for(int stolpec = 0; stolpec < 4; stolpec++){
+//                    int bitIndex = 15 - (vrstica * 4 + stolpec);
+//                    boolean prizgan = ((koda_znaka >> bitIndex) & 1) == 1;
+//                    System.out.print(prizgan ? crnaPika : belaPika);
+//
+//                } System.out.print(belaPika); // presledek
+//            }
+//            System.out.println();
+//        }
+//    }
+
     static void izpisi16bit(short[] nizZnakov){
-
-
-        for(int vrstica=0; vrstica < 4; vrstica++) {
-            for (int znak = 0; znak < nizZnakov.length; znak++) {
-                short koda_znaka = nizZnakov[znak];
-                for(int stolpec = 0; stolpec < 4; stolpec++){
-                    int bitIndex = 15 - (vrstica * 4 + stolpec);
-                    boolean prizgan = ((koda_znaka >> bitIndex) & 1) == 1;
+        for (int i = 0; i<4; i++){ //vrstice
+            for (short znak: nizZnakov){
+                for (int stolpec = 0; stolpec < 4; stolpec++){
+                    int index = 15 - (i * 4 + stolpec);
+                    boolean prizgan = ((znak >> index) & 1) == 1;
                     System.out.print(prizgan ? crnaPika : belaPika);
-
                 } System.out.print(belaPika); // presledek
-
-
-
-
             }
             System.out.println();
         }
-
     }
 
     static void izpisi16bit(String niz){
         short[] kode = new short[niz.length()];
 
-        niz = niz.toUpperCase();
+        niz = niz.toUpperCase(); // vse črke niza postanejo velike črke
 
-        for (int i = 0; i<niz.length();i++){
-            for (int j = 0; j<abeceda.length; j++){
-                if (niz.charAt(i) == abeceda[j]){
-                    kode[i] = kodeZnakov16bit[j];
-                }
+        for (int znak = 0; znak<niz.length(); znak++){
+            for (int crka = 0; crka < abeceda.length; crka++){
+                if (abeceda[crka] == niz.charAt(znak)) kode[znak] = kodeZnakov16bit[crka];
             }
         }
-
+        System.out.print(belaPika); // presledek
         izpisi16bit(kode);
     }
 
@@ -199,12 +216,12 @@ public class Vaje3 {
 
 
 
-    public static void main(){
+    public static void main(String[] args){
 //        izpisi16bit((short)0b1111100111111001);
 //
 //        izpisi16bit(new short[] {(short)0b1111100011101000, (short)0b1111100111111010, (short)0b1111010001001111});
 //
-//        izpisi16bit("DoRiFn");
+//       izpisi16bit("Try harder lil bro");
 //
 //        izpisi64bit(0b0001100000100100010000100100001001111110010000100100001011100111L);
 //
@@ -212,9 +229,15 @@ public class Vaje3 {
 //        izpisi64bit(4342219536296657468L);
 //
 //        izpisi64bit(new long[] {0b1111111101000001010000010100100001111000010010000100000011100000L, 0b0011000001010000000100000001000000010000000100000001000011111111L});
+//        System.out.println();
+//       izpisi64bit("Skill issue");
+//        izpisi64bit(-36525672788885761L);
 
-        izpisi64bit("Skill issue");
-        izpisi64bit(-36525672788885761L);
+
+        if (args.length > 0){
+            int velikost = 
+        }
+
 
 
 
