@@ -4,33 +4,30 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class DN05 {
-
     public static void main(String[] args) {
         if (args.length < 2) {
             System.out.println("Napaka: neustrezni argumenti.");
             return;
         }
-
         String operacija = args[0];
-
-        if (!operacija.equals("branje") && !operacija.equals("poravnaj")) {
+        if (!operacija.equals("branje") && !operacija.equals("poravnaj") && !operacija.equals("slika")) {
             System.out.println("Napaka: neustrezni argumenti.");
             return;
         }
-
         if (operacija.equals("branje") && args.length != 2) {
             System.out.println("Napaka: neustrezni argumenti.");
             return;
         }
-
         if (operacija.equals("poravnaj") && args.length != 3) {
             System.out.println("Napaka: neustrezni argumenti.");
             return;
         }
-
+        if (operacija.equals("slika") && args.length != 6) {
+            System.out.println("Napaka: neustrezni argumenti.");
+            return;
+        }
         String imeDatoteke = args[1];
 
-        // MAIN opravi vse začetne preveritve (obstoj datoteke in prve 2 vrstici)
         try {
             Scanner sc = new Scanner(new File(imeDatoteke));
 
@@ -52,7 +49,7 @@ public class DN05 {
                 sc.close();
                 return;
             }
-            sc.close(); // Zapremo, ker bodo datoteko dejansko obdelovale posamezne metode
+            sc.close();
 
             char[][] tabela;
             if (tip.equals("UREJENO")) {
@@ -64,12 +61,11 @@ public class DN05 {
                 return;
             }
 
-            // Če je bila napaka v vsebini, so metode vrnile null in samo prekinemo
             if (tabela == null) {
                 return;
             }
 
-            // Če gre za prvo nalogo samo izpišemo, če za drugo razširimo pot
+
             if (operacija.equals("poravnaj")) {
                 String nacin = args[2];
                 if (!nacin.equals("levo") && !nacin.equals("desno") && !nacin.equals("sredina") && !nacin.equals("obojestransko")) {
@@ -78,6 +74,18 @@ public class DN05 {
                 }
                 char[][] poravnana = poravnajVrstice(tabela, nacin);
                 izpisi(poravnana);
+            } else if (operacija.equals("slika")) {
+                try {
+                    int x = Integer.parseInt(args[2]);
+                    int y = Integer.parseInt(args[3]);
+                    int s = Integer.parseInt(args[4]);
+                    int v = Integer.parseInt(args[5]);
+                    char[][] slikaTabela = vstaviSliko(tabela, x, y, s, v);
+                    izpisi(slikaTabela);
+                } catch (NumberFormatException e) {
+                    System.out.println("Napaka: neustrezni argumenti.");
+                    return;
+                }
             } else {
                 izpisi(tabela);
             }
@@ -85,7 +93,7 @@ public class DN05 {
         } catch (FileNotFoundException e) {
             System.out.println("Napaka: datoteka ne obstaja.");
         } catch (Exception e) {
-            // Za ostale nepredvidene sistemske izjeme
+
         }
     }
 
@@ -99,8 +107,8 @@ public class DN05 {
             char[] stara = tabela[r];
             char[] nova = novaTabela[r];
 
-            // Izključno z indeksi poberemo dolžine in vsebino besed kot narekuje navodilo (prepoved metod nad String razredom)
-            int maxBesed = sirina / 2 + 1; // v najslabšem primeru pri enem črki na besedo in '_' prekopu
+
+            int maxBesed = sirina / 2 + 1;
             char[][] besede = new char[maxBesed][sirina];
             int[] dolzine = new int[maxBesed];
             int stBesed = 0;
@@ -108,12 +116,12 @@ public class DN05 {
 
             int i = 0;
             while (i < sirina) {
-                // Preskoči zaporedne podčrtaje
+
                 while (i < sirina && stara[i] == '_') {
                     i++;
                 }
                 if (i < sirina) {
-                    // Prepišemo besedo na ustrezen indeks
+
                     int len = 0;
                     while (i < sirina && stara[i] != '_') {
                         besede[stBesed][len] = stara[i];
@@ -126,13 +134,12 @@ public class DN05 {
                 }
             }
 
-            // Osnovno polnenje nove vrstice samo s presledki / '_'
+
             for (int k = 0; k < sirina; k++) {
                 nova[k] = '_';
             }
 
             if (stBesed == 0) {
-                // Vrstica samo s praznim prekopom (ne povzroči napake, pustimo same '_')
                 continue;
             }
 
@@ -147,7 +154,7 @@ public class DN05 {
                     }
                 }
             } else if (nacin.equals("desno")) {
-                // Skupno znakov vključno z enojnim '_' med besedami
+
                 int totalUsed = stZnakov + stBesed - 1;
                 int pos = sirina - totalUsed;
                 for (int w = 0; w < stBesed; w++) {
@@ -161,7 +168,7 @@ public class DN05 {
             } else if (nacin.equals("sredina")) {
                 int totalUsed = stZnakov + stBesed - 1;
                 int freeSpaces = sirina - totalUsed;
-                // Integer roundana dol. 5/2 = 2 (torej manj na levi za liho število, kot pravi navodilo)
+
                 int leftSpaces = freeSpaces / 2;
                 int pos = leftSpaces;
                 for (int w = 0; w < stBesed; w++) {
@@ -174,7 +181,7 @@ public class DN05 {
                 }
             } else if (nacin.equals("obojestransko")) {
                 if (stBesed == 1) {
-                    // Ko imaš v vrstici smo 1 besedo ob rob samo nalimaš in dopolniš (pada nazaj na levi primer)
+
                     int pos = 0;
                     for (int k = 0; k < dolzine[0]; k++) {
                         nova[pos++] = besede[0][k];
@@ -203,11 +210,11 @@ public class DN05 {
         return novaTabela;
     }
 
-    // DELOVNE METODE (samo String, brez try/catch in brez preverjanja začetnega formata)
+
 
     public static char[][] preberiUrejenoDatoteko(String imeDatoteke) throws FileNotFoundException {
         try (Scanner sc = new Scanner(new File(imeDatoteke))) {
-            sc.nextLine(); // preskočimo prvo vrstico (preveril jo je main)
+            sc.nextLine();
 
             int[] dim = preberiDimenzije(sc.nextLine().trim());
             int sirina = dim[0];
@@ -245,7 +252,7 @@ public class DN05 {
         StringBuilder besedilo = new StringBuilder();
 
         try (Scanner sc = new Scanner(new File(imeDatoteke))) {
-            sc.nextLine(); // preskočimo prvo vrstico (preveril jo je main)
+            sc.nextLine();
 
             int[] dim = preberiDimenzije(sc.nextLine().trim());
             sirina = dim[0];
@@ -262,7 +269,7 @@ public class DN05 {
             }
         }
 
-        // Če besedila ni, vrnemo napako
+
         if (besedilo.length() == 0) {
             System.out.println("Napaka: nepravilen format datoteke.");
             return null;
@@ -337,5 +344,159 @@ public class DN05 {
         for (char[] vrstica : tabela) {
             System.out.println(new String(vrstica));
         }
+    }
+
+    public static char[][] vstaviSliko(char[][] tabela, int x, int y, int s, int v) {
+        if (tabela == null) return null;
+        int visina = tabela.length;
+        int sirina = tabela[0].length;
+
+        // Preverjanje mej slike
+        if (x < 0 || y < 0 || x + s > sirina || y + v > visina) {
+            System.out.println("Napaka: premajhne dimenzije strani.");
+            return null;
+        }
+
+        // Najdemo vse besede v gridu, ter njihove zacetne pozicije
+        int maxBesed = (visina * sirina) / 2 + 1;
+        char[][] besede = new char[maxBesed][sirina];
+        int[] dolzine = new int[maxBesed];
+        int[] zacetkiX = new int[maxBesed];
+        int[] zacetkiY = new int[maxBesed];
+        int stBesed = 0;
+
+        for (int r = 0; r < visina; r++) {
+            int c = 0;
+            while (c < sirina) {
+                while (c < sirina && tabela[r][c] == '_') {
+                    c++;
+                }
+                if (c < sirina) {
+                    int zacetekX = c;
+                    int zacetekY = r;
+                    int len = 0;
+                    while (c < sirina && tabela[r][c] != '_') {
+                        besede[stBesed][len] = tabela[r][c];
+                        len++;
+                        c++;
+                    }
+                    dolzine[stBesed] = len;
+                    zacetkiX[stBesed] = zacetekX;
+                    zacetkiY[stBesed] = zacetekY;
+                    stBesed++;
+                }
+            }
+        }
+
+        char[][] nova = new char[visina][sirina];
+        for (int r = 0; r < visina; r++) {
+            for (int c = 0; c < sirina; c++) {
+                nova[r][c] = '_';
+            }
+        }
+
+        // Risanje slike z "#"
+        for (int r = y; r < y + v; r++) {
+            for (int c = x; c < x + s; c++) {
+                nova[r][c] = '#';
+            }
+        }
+
+
+        int trenutnoX = 0;
+        int trenutnoY = 0;
+        boolean forceFlow = false;
+
+        for (int b = 0; b < stBesed; b++) {
+            boolean useOriginal = false;
+
+
+            if (!forceFlow) {
+                int ox = zacetkiX[b];
+                int oy = zacetkiY[b];
+
+                boolean sekaSliko = false;
+                if (oy >= y && oy < y + v) {
+                    if (!(ox + dolzine[b] <= x || ox >= x + s)) {
+                        sekaSliko = true;
+                    }
+                }
+
+                if (!sekaSliko) {
+                    useOriginal = true;
+                } else {
+                    forceFlow = true;
+                    trenutnoX = ox;
+                    trenutnoY = oy;
+                }
+            }
+
+            if (forceFlow) {
+                if (trenutnoY < zacetkiY[b] || (trenutnoY == zacetkiY[b] && trenutnoX <= zacetkiX[b])) {
+                    int ox = zacetkiX[b];
+                    int oy = zacetkiY[b];
+                    boolean sekaSliko = false;
+                    if (oy >= y && oy < y + v) {
+                        if (!(ox + dolzine[b] <= x || ox >= x + s)) {
+                            sekaSliko = true;
+                        }
+                    }
+
+                    if (!sekaSliko) {
+                        forceFlow = false;
+                        useOriginal = true;
+                    }
+                }
+            }
+
+            if (useOriginal) {
+                for (int i = 0; i < dolzine[b]; i++) {
+                    nova[zacetkiY[b]][zacetkiX[b] + i] = besede[b][i];
+                }
+                trenutnoX = zacetkiX[b] + dolzine[b];
+                trenutnoY = zacetkiY[b];
+            } else { // Reflow block
+                boolean postavljeno = false;
+                while (!postavljeno) {
+                    if (trenutnoY >= visina) {
+                        System.out.println("Napaka: premajhne dimenzije strani.");
+                        return null;
+                    }
+                    int len = dolzine[b];
+
+                    if (trenutnoX + len > sirina) {
+                        trenutnoY++;
+                        trenutnoX = 0;
+                        continue;
+                    }
+                    boolean presek = false;
+                    for (int i = 0; i < len; i++) {
+                        if (nova[trenutnoY][trenutnoX + i] == '#') {
+                            presek = true;
+                            trenutnoX = trenutnoX + i + 1;
+                            break;
+                        }
+                    }
+                    if (presek) {
+                        continue;
+                    }
+
+                    for (int i = 0; i < len; i++) {
+                        nova[trenutnoY][trenutnoX + i] = besede[b][i];
+                    }
+                    trenutnoX += len;
+
+                    if (trenutnoX < sirina) {
+                        if (nova[trenutnoY][trenutnoX] == '#') {
+                            trenutnoX++;
+                        } else {
+                            trenutnoX += 1;
+                        }
+                    }
+                    postavljeno = true;
+                }
+            }
+        }
+        return nova;
     }
 }
