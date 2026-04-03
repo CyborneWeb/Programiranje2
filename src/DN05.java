@@ -121,84 +121,86 @@ public class DN05 {
     // 2. NALOGA - Poravnava vrstic na podan način
     public static char[][] poravnajVrstice(char[][] tabela, String nacin) {
         if (tabela == null) return null;
-        int visina = tabela.length;
-        int sirina = tabela[0].length;
-        char[][] novaTabela = new char[visina][sirina];
 
-        for (int r = 0; r < visina; r++) {
-            char[] stara = tabela[r];
-            char[] nova = novaTabela[r];
-            int maxBesed = sirina / 2 + 1;
-            char[][] besede = new char[maxBesed][sirina];
-            int[] dolzine = new int[maxBesed];
-            int stBesed = 0;
-            int stZnakov = 0;
+        int steviloVrstic = tabela.length;
+        int steviloStolpcev = tabela[0].length;
+        char[][] novaTabela = new char[steviloVrstic][steviloStolpcev];
 
-            int i = 0;
-            while (i < sirina) {
+        for (int vrstica = 0; vrstica < steviloVrstic; vrstica++) {
+            char[] staraVrstica = tabela[vrstica];
+            char[] novaVrstica = novaTabela[vrstica];
 
-                while (i < sirina && stara[i] == '_') {
-                    i++;
+            int najvecBesed = steviloStolpcev / 2 + 1;
+            char[][] besede = new char[najvecBesed][steviloStolpcev];
+            int[] dolzineBesed = new int[najvecBesed];
+            int steviloBesed = 0;
+            int steviloCrk = 0;
+
+            int indeks = 0;
+            while (indeks < steviloStolpcev) {
+                while (indeks < steviloStolpcev && staraVrstica[indeks] == '_') {
+                    indeks++;
                 }
-                if (i < sirina) {
 
-                    int len = 0;
-                    while (i < sirina && stara[i] != '_') {
-                        besede[stBesed][len] = stara[i];
-                        len++;
-                        i++;
-                        stZnakov++;
+                if (indeks < steviloStolpcev) {
+                    int dolzina = 0;
+                    while (indeks < steviloStolpcev && staraVrstica[indeks] != '_') {
+                        besede[steviloBesed][dolzina] = staraVrstica[indeks];
+                        dolzina++;
+                        indeks++;
+                        steviloCrk++;
                     }
-                    dolzine[stBesed] = len;
-                    stBesed++;
+                    dolzineBesed[steviloBesed] = dolzina;
+                    steviloBesed++;
                 }
             }
-            for (int k = 0; k < sirina; k++) {
-                nova[k] = '_';
+
+            for (int stolpec = 0; stolpec < steviloStolpcev; stolpec++) {
+                novaVrstica[stolpec] = '_';
             }
-            if (stBesed == 0) {
+
+            if (steviloBesed == 0) {
                 continue;
             }
+
             switch (nacin) {
                 case "levo" -> {
-                    int pos = 0;
-                    poravnava(nova, besede, dolzine, stBesed, pos);
+                    int zacetniPolozaj = 0;
+                    poravnava(novaVrstica, besede, dolzineBesed, steviloBesed, zacetniPolozaj);
                 }
                 case "desno" -> {
-
-                    int totalUsed = stZnakov + stBesed - 1;
-                    int pos = sirina - totalUsed;
-                    poravnava(nova, besede, dolzine, stBesed, pos);
+                    int uporabljeniZnaki = steviloCrk + steviloBesed - 1;
+                    int zacetniPolozaj = steviloStolpcev - uporabljeniZnaki;
+                    poravnava(novaVrstica, besede, dolzineBesed, steviloBesed, zacetniPolozaj);
                 }
                 case "sredina" -> {
-                    int totalUsed = stZnakov + stBesed - 1;
-                    int freeSpaces = sirina - totalUsed;
-
-                    int pos = freeSpaces / 2;
-                    poravnava(nova, besede, dolzine, stBesed, pos);
+                    int uporabljeniZnaki = steviloCrk + steviloBesed - 1;
+                    int prostaMesta = steviloStolpcev - uporabljeniZnaki;
+                    int zacetniPolozaj = prostaMesta / 2; // levo je pri lihih mestih za 1 manj
+                    poravnava(novaVrstica, besede, dolzineBesed, steviloBesed, zacetniPolozaj);
                 }
                 case "obojestransko" -> {
-                    if (stBesed == 1) {
-
-                        int pos = 0;
-                        for (int k = 0; k < dolzine[0]; k++) {
-                            nova[pos++] = besede[0][k];
+                    if (steviloBesed == 1) {
+                        int polozaj = 0;
+                        for (int i = 0; i < dolzineBesed[0]; i++) {
+                            novaVrstica[polozaj++] = besede[0][i];
                         }
                     } else {
-                        int gaps = stBesed - 1;
-                        int distSpaces = sirina - stZnakov;
-                        int baseSpace = distSpaces / gaps;
-                        int extraSpace = distSpaces % gaps;
+                        int steviloPresledkov = steviloBesed - 1;
+                        int steviloPodcrtajevZaPresledke = steviloStolpcev - steviloCrk;
+                        int osnovnoSteviloPodcrtajev = steviloPodcrtajevZaPresledke / steviloPresledkov;
+                        int ostanekPodcrtajev = steviloPodcrtajevZaPresledke % steviloPresledkov;
 
-                        int pos = 0;
-                        for (int w = 0; w < stBesed; w++) {
-                            for (int k = 0; k < dolzine[w]; k++) {
-                                nova[pos++] = besede[w][k];
+                        int polozaj = 0;
+                        for (int b = 0; b < steviloBesed; b++) {
+                            for (int i = 0; i < dolzineBesed[b]; i++) {
+                                novaVrstica[polozaj++] = besede[b][i];
                             }
-                            if (w < stBesed - 1) {
-                                int actualSpaces = baseSpace + (w < extraSpace ? 1 : 0);
-                                for (int s = 0; s < actualSpaces; s++) {
-                                    nova[pos++] = '_';
+
+                            if (b < steviloBesed - 1) {
+                                int podcrtajiVTemPresledku = osnovnoSteviloPodcrtajev + (b < ostanekPodcrtajev ? 1 : 0);
+                                for (int p = 0; p < podcrtajiVTemPresledku; p++) {
+                                    novaVrstica[polozaj++] = '_';
                                 }
                             }
                         }
@@ -206,16 +208,18 @@ public class DN05 {
                 }
             }
         }
+
         return novaTabela;
     }
+
     // POMOŽNA METODA – poravnava za večkratno uporabo v Poravnaj Vrstice
-    static void poravnava(char[] nova, char[][] besede, int[] dolzine, int stBesed, int pos) {
-        for (int s = 0; s < stBesed; s++) {
-            for (int k = 0; k < dolzine[s]; k++) {
-                nova[pos++] = besede[s][k];
+    static void poravnava(char[] novaVrstica, char[][] besede, int[] dolzineBesed, int steviloBesed, int zacetniPolozaj) {
+        for (int beseda = 0; beseda < steviloBesed; beseda++) {
+            for (int znak = 0; znak < dolzineBesed[beseda]; znak++) {
+                novaVrstica[zacetniPolozaj++] = besede[beseda][znak];
             }
-            if (s < stBesed - 1) {
-                nova[pos++] = '_';
+            if (beseda < steviloBesed - 1) {
+                novaVrstica[zacetniPolozaj++] = '_';
             }
         }
     }
