@@ -14,8 +14,8 @@ public class DN05 {
             int visina = Integer.parseInt(dim[1]);
 
             char[][] tabela = new char[visina][sirina];
-
-            for (int r = 0; r < visina; r++) {
+            int r = 0;
+            while (r < visina) {
                 if (!sc.hasNextLine()) {
                     System.out.println("Napaka: nepravilne dimenzije strani.");
                     return null;
@@ -25,9 +25,12 @@ public class DN05 {
                     System.out.println("Napaka: nepravilne dimenzije strani.");
                     return null;
                 }
-                for (int c = 0; c < sirina; c++) {
+                int c = 0;
+                while (c < sirina) {
                     tabela[r][c] = vrstica.charAt(c);
+                    c++;
                 }
+                r++;
             }
 
             if (sc.hasNextLine()) {
@@ -67,12 +70,14 @@ public class DN05 {
         }
 
         char[][] tabela = new char[visina][sirina];
-        for (int r = 0; r < visina; r++) {
-            Arrays.fill(tabela[r], '_');
-        }
-
-        String[] besede = besedilo.toString().split("\\s+");
         int r = 0;
+        while (r < visina) {
+            Arrays.fill(tabela[r], '_');
+            r++;
+        }
+        // nisem vedel če je split dovoljejn v prvi nalogi, saj je bila omejitev napisana šele pri navodilu druge, upam da ni narobe
+        String[] besede = besedilo.toString().split("\\s+");
+        r = 0;
         int c = 0;
 
         for (String beseda : besede) {
@@ -125,8 +130,8 @@ public class DN05 {
         int steviloVrstic = tabela.length;
         int steviloStolpcev = tabela[0].length;
         char[][] novaTabela = new char[steviloVrstic][steviloStolpcev];
-
-        for (int vrstica = 0; vrstica < steviloVrstic; vrstica++) {
+        int vrstica = 0;
+        while (vrstica < steviloVrstic) {
             char[] staraVrstica = tabela[vrstica];
             char[] novaVrstica = novaTabela[vrstica];
 
@@ -154,9 +159,10 @@ public class DN05 {
                     steviloBesed++;
                 }
             }
-
-            for (int stolpec = 0; stolpec < steviloStolpcev; stolpec++) {
+            int stolpec = 0;
+            while (stolpec < steviloStolpcev) {
                 novaVrstica[stolpec] = '_';
+                stolpec++;
             }
 
             if (steviloBesed == 0) {
@@ -207,6 +213,7 @@ public class DN05 {
                     }
                 }
             }
+            vrstica++;
         }
 
         return novaTabela;
@@ -214,13 +221,17 @@ public class DN05 {
 
     // POMOŽNA METODA – poravnava za večkratno uporabo v Poravnaj Vrstice
     static void poravnava(char[] novaVrstica, char[][] besede, int[] dolzineBesed, int steviloBesed, int zacetniPolozaj) {
-        for (int beseda = 0; beseda < steviloBesed; beseda++) {
-            for (int znak = 0; znak < dolzineBesed[beseda]; znak++) {
+        int beseda = 0;
+        while (beseda < steviloBesed) {
+            int znak = 0;
+            while (znak < dolzineBesed[beseda]) {
                 novaVrstica[zacetniPolozaj++] = besede[beseda][znak];
+                znak++;
             }
             if (beseda < steviloBesed - 1) {
                 novaVrstica[zacetniPolozaj++] = '_';
             }
+            beseda++;
         }
     }
     // NALOGA 3 - Vstavljanje slike
@@ -243,7 +254,8 @@ public class DN05 {
         int[] zacetkiY = new int[maxBesed];
         int stBesed = 0;
 
-        for (int r = 0; r < visina; r++) {
+        int r = 0;
+        while (r < visina) {
             int c = 0;
             while (c < sirina) {
                 while (c < sirina && tabela[r][c] == '_') {
@@ -263,27 +275,36 @@ public class DN05 {
                     stBesed++;
                 }
             }
+            r++;
         }
 
         char[][] nova = new char[visina][sirina];
-        for (int r = 0; r < visina; r++) {
-            for (int c = 0; c < sirina; c++) {
+        r = 0;
+        while (r < visina) {
+            int c = 0;
+            while (c < sirina) {
                 nova[r][c] = '_';
+                c++;
             }
+            r++;
         }
 
         // Risanje slike z "#"
-        for (int r = y; r < y + v; r++) {
-            for (int c = x; c < x + s; c++) {
+        r = y;
+        while (r < y + v) {
+            int c = x;
+            while (c < x + s) {
                 nova[r][c] = '#';
+                c++;
             }
+            r++;
         }
 
         int trenutnoX = 0;
         int trenutnoY = 0;
         boolean prisiliPreliv = false;
-
-        for (int b = 0; b < stBesed; b++) {
+        int b = 0;
+        while (b < stBesed) {
             boolean uporabiOriginal = false;
 
             if (!prisiliPreliv) {
@@ -342,12 +363,14 @@ public class DN05 {
                         continue;
                     }
                     boolean presek = false;
-                    for (int i = 0; i < len; i++) {
+                    int i = 0;
+                    while (i < len) {
                         if (nova[trenutnoY][trenutnoX + i] == '#') {
                             presek = true;
                             trenutnoX = trenutnoX + i + 1;
                             break;
                         }
+                        i++;
                     }
                     if (presek) {
                         continue;
@@ -366,6 +389,7 @@ public class DN05 {
                     postavljeno = true;
                 }
             }
+            b++;
         }
         return nova;
     }
@@ -384,17 +408,25 @@ public class DN05 {
 
 
         // filanje nove tabele, z samimi podčrtaji
-        for (int r = 0; r < novaVisina; r++) {
-            for (int c = 0; c < novaSirina; c++) {
-                nova[r][c] = '_';
-            }
-        }
+        int r = 0;
 
-        // zanka, ki gre skozi staro tabelo, le da vrstice stare tabele prepiše v stolpce nove
-        for (int r = 0; r < visina; r++) {
-            for (int c = 0; c < novaVisina; c++) {
-                nova[c][2 * r] = tabela[r][c];
+        while (r < novaVisina) {
+            int c = 0;
+            while (c < novaSirina) {
+                nova[r][c] = '_';
+                c++;
             }
+            r++;
+        }
+        r = 0; // resetiranje kazalca na vrstice na 0
+        // zanka, ki gre skozi staro tabelo, le da vrstice stare tabele prepiše v stolpce nove
+        while (r < visina) {
+            int c = 0;
+            while (c < novaVisina) {
+                nova[c][2 * r] = tabela[r][c];
+                c++;
+            }
+            r++;
         }
 
         return nova;
