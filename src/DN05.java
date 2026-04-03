@@ -4,6 +4,121 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class DN05 {
+    // 1. NALOGA - Preberi urejeno
+    public static char[][] preberiUrejenoDatoteko(String imeDatoteke) throws FileNotFoundException {
+        try (Scanner sc = new Scanner(new File(imeDatoteke))) {
+            sc.nextLine();
+
+            String[] dim = sc.nextLine().split("x");
+            int sirina = Integer.parseInt(dim[0]);
+            int visina = Integer.parseInt(dim[1]);
+
+            char[][] tabela = new char[visina][sirina];
+
+            for (int r = 0; r < visina; r++) {
+                if (!sc.hasNextLine()) {
+                    System.out.println("Napaka: nepravilne dimenzije strani.");
+                    return null;
+                }
+                String vrstica = sc.nextLine();
+                if (vrstica.length() != sirina) {
+                    System.out.println("Napaka: nepravilne dimenzije strani.");
+                    return null;
+                }
+                for (int c = 0; c < sirina; c++) {
+                    tabela[r][c] = vrstica.charAt(c);
+                }
+            }
+
+            if (sc.hasNextLine()) {
+                System.out.println("Napaka: nepravilne dimenzije strani.");
+                return null;
+            }
+            return tabela;
+        }
+    }
+    // 1. NALOGA - Preberi Neurejeno
+    public static char[][] preberiNeurejenoDatoteko(String imeDatoteke) throws FileNotFoundException {
+        int sirina;
+        int visina;
+        StringBuilder besedilo = new StringBuilder();
+
+        try (Scanner sc = new Scanner(new File(imeDatoteke))) {
+            sc.nextLine();
+
+            String[] dim = sc.nextLine().trim().split("x");
+            sirina = Integer.parseInt(dim[0]);
+            visina = Integer.parseInt(dim[1]);
+
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine().trim();
+                if (!line.isEmpty()) {
+                    if (!besedilo.isEmpty()) {
+                        besedilo.append(' ');
+                    }
+                    besedilo.append(line);
+                }
+            }
+        }
+
+        if (besedilo.isEmpty()) {
+            System.out.println("Napaka: nepravilen format datoteke.");
+            return null;
+        }
+
+        char[][] tabela = new char[visina][sirina];
+        for (int r = 0; r < visina; r++) {
+            Arrays.fill(tabela[r], '_');
+        }
+
+        String[] besede = besedilo.toString().split("\\s+");
+        int r = 0;
+        int c = 0;
+
+        for (String beseda : besede) {
+            int len = beseda.length();
+
+            if (len > sirina) {
+                System.out.println("Napaka: premajhne dimenzije strani.");
+                return null;
+            }
+
+            int potrebniZnaki = (c == 0) ? len : (1 + len);
+
+            if (c + potrebniZnaki <= sirina) {
+                if (c != 0) {
+                    tabela[r][c] = '_';
+                    c++;
+                }
+                for (int i = 0; i < len; i++) {
+                    tabela[r][c + i] = beseda.charAt(i);
+                }
+            } else {
+                r++;
+                c = 0;
+                if (r >= visina) {
+                    System.out.println("Napaka: premajhne dimenzije strani.");
+                    return null;
+                }
+                for (int i = 0; i < len; i++) {
+                    tabela[r][c + i] = beseda.charAt(i);
+                }
+            }
+            c += len;
+        }
+
+        return tabela;
+    }
+    // Pomožna metoda za izpis tabel, ki jih dobim iz metod za branje in urejanje
+    public static void izpisi(char[][] tabela) {
+        if (tabela == null) {
+            return;
+        }
+        for (char[] vrstica : tabela) {
+            System.out.println(new String(vrstica));
+        }
+    }
+    // 2. NALOGA - Poravnava vrstic na podan način
     public static char[][] poravnajVrstice(char[][] tabela, String nacin) {
         if (tabela == null) return null;
         int visina = tabela.length;
@@ -93,133 +208,18 @@ public class DN05 {
         }
         return novaTabela;
     }
-
+    // POMOŽNA METODA – poravnava za večkratno uporabo v Poravnaj Vrstice
     static void poravnava(char[] nova, char[][] besede, int[] dolzine, int stBesed, int pos) {
-        for (int w = 0; w < stBesed; w++) {
-            for (int k = 0; k < dolzine[w]; k++) {
-                nova[pos++] = besede[w][k];
+        for (int s = 0; s < stBesed; s++) {
+            for (int k = 0; k < dolzine[s]; k++) {
+                nova[pos++] = besede[s][k];
             }
-            if (w < stBesed - 1) {
+            if (s < stBesed - 1) {
                 nova[pos++] = '_';
             }
         }
     }
-
-    public static char[][] preberiUrejenoDatoteko(String imeDatoteke) throws FileNotFoundException {
-        try (Scanner sc = new Scanner(new File(imeDatoteke))) {
-            sc.nextLine();
-
-            String[] dim = sc.nextLine().split("x");
-            int sirina = Integer.parseInt(dim[0]);
-            int visina = Integer.parseInt(dim[1]);
-
-            char[][] tabela = new char[visina][sirina];
-
-            for (int r = 0; r < visina; r++) {
-                if (!sc.hasNextLine()) {
-                    System.out.println("Napaka: nepravilne dimenzije strani.");
-                    return null;
-                }
-                String vrstica = sc.nextLine();
-                if (vrstica.length() != sirina) {
-                    System.out.println("Napaka: nepravilne dimenzije strani.");
-                    return null;
-                }
-                for (int c = 0; c < sirina; c++) {
-                    tabela[r][c] = vrstica.charAt(c);
-                }
-            }
-
-            if (sc.hasNextLine()) {
-                System.out.println("Napaka: nepravilne dimenzije strani.");
-                return null;
-            }
-            return tabela;
-        }
-    }
-
-    public static char[][] preberiNeurejenoDatoteko(String imeDatoteke) throws FileNotFoundException {
-        int sirina;
-        int visina;
-        StringBuilder besedilo = new StringBuilder();
-
-        try (Scanner sc = new Scanner(new File(imeDatoteke))) {
-            sc.nextLine();
-
-            String[] dim = sc.nextLine().trim().split("x");
-            sirina = Integer.parseInt(dim[0]);
-            visina = Integer.parseInt(dim[1]);
-
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine().trim();
-                if (!line.isEmpty()) {
-                    if (!besedilo.isEmpty()) {
-                        besedilo.append(' ');
-                    }
-                    besedilo.append(line);
-                }
-            }
-        }
-
-
-        if (besedilo.isEmpty()) {
-            System.out.println("Napaka: nepravilen format datoteke.");
-            return null;
-        }
-
-        char[][] tabela = new char[visina][sirina];
-        for (int r = 0; r < visina; r++) {
-            Arrays.fill(tabela[r], '_');
-        }
-
-        String[] besede = besedilo.toString().split("\\s+");
-        int r = 0;
-        int c = 0;
-
-        for (String beseda : besede) {
-            int len = beseda.length();
-
-            if (len > sirina) {
-                System.out.println("Napaka: premajhne dimenzije strani.");
-                return null;
-            }
-
-            int potrebniZnaki = (c == 0) ? len : (1 + len);
-
-            if (c + potrebniZnaki <= sirina) {
-                if (c != 0) {
-                    tabela[r][c] = '_';
-                    c++;
-                }
-                for (int i = 0; i < len; i++) {
-                    tabela[r][c + i] = beseda.charAt(i);
-                }
-            } else {
-                r++;
-                c = 0;
-                if (r >= visina) {
-                    System.out.println("Napaka: premajhne dimenzije strani.");
-                    return null;
-                }
-                for (int i = 0; i < len; i++) {
-                    tabela[r][c + i] = beseda.charAt(i);
-                }
-            }
-            c += len;
-        }
-
-        return tabela;
-    }
-
-    public static void izpisi(char[][] tabela) {
-        if (tabela == null) {
-            return;
-        }
-        for (char[] vrstica : tabela) {
-            System.out.println(new String(vrstica));
-        }
-    }
-
+    // NALOGA 3 - Vstavljanje slike
     public static char[][] vstaviSliko(char[][] tabela, int x, int y, int s, int v) {
         if (tabela == null) return null;
         int visina = tabela.length;
@@ -275,16 +275,14 @@ public class DN05 {
             }
         }
 
-
         int trenutnoX = 0;
         int trenutnoY = 0;
-        boolean forceFlow = false;
+        boolean prisiliPreliv = false;
 
         for (int b = 0; b < stBesed; b++) {
-            boolean useOriginal = false;
+            boolean uporabiOriginal = false;
 
-
-            if (!forceFlow) {
+            if (!prisiliPreliv) {
                 int ox = zacetkiX[b];
                 int oy = zacetkiY[b];
 
@@ -296,15 +294,14 @@ public class DN05 {
                 }
 
                 if (!sekaSliko) {
-                    useOriginal = true;
+                    uporabiOriginal = true;
                 } else {
-                    forceFlow = true;
+                    prisiliPreliv = true;
                     trenutnoX = ox;
                     trenutnoY = oy;
                 }
             }
-
-            if (forceFlow) {
+            if (prisiliPreliv) {
                 if (trenutnoY < zacetkiY[b] || (trenutnoY == zacetkiY[b] && trenutnoX <= zacetkiX[b])) {
                     int ox = zacetkiX[b];
                     int oy = zacetkiY[b];
@@ -316,19 +313,17 @@ public class DN05 {
                     }
 
                     if (!sekaSliko) {
-                        forceFlow = false;
-                        useOriginal = true;
+                        prisiliPreliv = false;
+                        uporabiOriginal = true;
                     }
                 }
             }
 
-            if (useOriginal) {
-                for (int i = 0; i < dolzine[b]; i++) {
-                    nova[zacetkiY[b]][zacetkiX[b] + i] = besede[b][i];
-                }
+            if (uporabiOriginal) {
+                if (dolzine[b] >= 0) System.arraycopy(besede[b], 0, nova[zacetkiY[b]], zacetkiX[b], dolzine[b]);
                 trenutnoX = zacetkiX[b] + dolzine[b];
                 trenutnoY = zacetkiY[b];
-            } else { // Reflow block
+            } else {
                 boolean postavljeno = false;
                 while (!postavljeno) {
                     if (trenutnoY >= visina) {
@@ -354,9 +349,7 @@ public class DN05 {
                         continue;
                     }
 
-                    for (int i = 0; i < len; i++) {
-                        nova[trenutnoY][trenutnoX + i] = besede[b][i];
-                    }
+                    if (len >= 0) System.arraycopy(besede[b], 0, nova[trenutnoY], trenutnoX, len);
                     trenutnoX += len;
 
                     if (trenutnoX < sirina) {
@@ -372,16 +365,59 @@ public class DN05 {
         }
         return nova;
     }
+    // NALOGA 7 - Navpicno besedilo
+    public static char[][] navpicnoBesedilo(char[][] tabela) {
+        if (tabela == null || tabela.length == 0 || tabela[0].length == 0) {
+            return null;
+        }
+
+        int visina = tabela.length;
+        int novaVisina = tabela[0].length;
+
+        int novaSirina = visina * 2 - 1; // povečaanje grida, da bo dovolj prostora za "_" med vsakim stolpcem
+
+        char[][] nova = new char[novaVisina][novaSirina];
+
+
+        // filanje nove tabele, z samimi podčrtaji
+        for (int r = 0; r < novaVisina; r++) {
+            for (int c = 0; c < novaSirina; c++) {
+                nova[r][c] = '_';
+            }
+        }
+
+        // zanka, ki gre skozi staro tabelo, le da vrstice stare tabele prepiše v stolpce nove
+        for (int r = 0; r < visina; r++) {
+            for (int c = 0; c < novaVisina; c++) {
+                nova[c][2 * r] = tabela[r][c];
+            }
+        }
+
+        return nova;
+    }
+    // METODA MAIN
     public static void main(String[] args) {
         if (args.length < 2) {
             System.out.println("Napaka: neustrezni argumenti.");
             return;
         }
-        String operacija = args[0];
-        if (!operacija.equals("branje") && !operacija.equals("poravnaj") && !operacija.equals("slika")) {
-            System.out.println("Napaka: neustrezni argumenti.");
-            return;
+
+        String operacija;
+        String imeDatoteke;
+        if (args.length == 2 && args[1].equals("navpicno")) {
+            // preverjanje argumentov posebej za 7. nalogo, kjer je operacija prvi argument, ime datoteke pa drugi
+            operacija = "navpicno";
+            imeDatoteke = args[0];
+        } else {
+            // preverjanje argumentov za ostale naloge, 1. ime datoteke, 2. operacija
+            operacija = args[0];
+            imeDatoteke = args[1];
+            if (!operacija.equals("branje") && !operacija.equals("poravnaj") && !operacija.equals("slika") && !operacija.equals("navpicno")) {
+                System.out.println("Napaka: neustrezni argumenti.");
+                return;
+            }
         }
+
         if (operacija.equals("branje") && args.length != 2) {
             System.out.println("Napaka: neustrezni argumenti.");
             return;
@@ -394,7 +430,11 @@ public class DN05 {
             System.out.println("Napaka: neustrezni argumenti.");
             return;
         }
-        String imeDatoteke = args[1];
+
+        if (operacija.equals("navpicno") && args.length != 2) {
+            System.out.println("Napaka: neustrezni argumenti.");
+            return;
+        }
 
         try {
             Scanner sc = new Scanner(new File(imeDatoteke));
@@ -411,6 +451,7 @@ public class DN05 {
                 sc.close();
                 return;
             }
+            // pridobitev dimenzij s split po "x"
             String[] dimStr = sc.nextLine().trim().split("x");
             int testSirina = Integer.parseInt(dimStr[0]);
             int testVisina = Integer.parseInt(dimStr[1]);
@@ -433,28 +474,33 @@ public class DN05 {
             if (tabela == null) {
                 return;
             }
-            if (operacija.equals("poravnaj")) {
-                String nacin = args[2];
-                if (!nacin.equals("levo") && !nacin.equals("desno") && !nacin.equals("sredina") && !nacin.equals("obojestransko")) {
-                    System.out.println("Napaka: neustrezni argumenti.");
-                    return;
+            switch (operacija) {
+                case "poravnaj" -> {
+                    String nacin = args[2];
+                    if (!nacin.equals("levo") && !nacin.equals("desno") && !nacin.equals("sredina") && !nacin.equals("obojestransko")) {
+                        System.out.println("Napaka: neustrezni argumenti.");
+                        return;
+                    }
+                    char[][] poravnana = poravnajVrstice(tabela, nacin);
+                    izpisi(poravnana);
                 }
-                char[][] poravnana = poravnajVrstice(tabela, nacin);
-                izpisi(poravnana);
-            } else if (operacija.equals("slika")) {
-                try {
-                    int x = Integer.parseInt(args[2]);
-                    int y = Integer.parseInt(args[3]);
-                    int s = Integer.parseInt(args[4]);
-                    int v = Integer.parseInt(args[5]);
-                    char[][] slikaTabela = vstaviSliko(tabela, x, y, s, v);
-                    izpisi(slikaTabela);
-                } catch (NumberFormatException e) {
-                    System.out.println("Napaka: neustrezni argumenti.");
-                    return;
+                case "slika" -> {
+                    try {
+                        int x = Integer.parseInt(args[2]);
+                        int y = Integer.parseInt(args[3]);
+                        int s = Integer.parseInt(args[4]);
+                        int v = Integer.parseInt(args[5]);
+                        char[][] slikaTabela = vstaviSliko(tabela, x, y, s, v);
+                        izpisi(slikaTabela);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Napaka: neustrezni argumenti.");
+                    }
                 }
-            } else {
-                izpisi(tabela);
+                case "navpicno" -> {
+                    char[][] navpicna = navpicnoBesedilo(tabela);
+                    izpisi(navpicna);
+                }
+                default -> izpisi(tabela);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Napaka: datoteka ne obstaja.");
