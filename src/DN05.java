@@ -95,8 +95,10 @@ public class DN05 {
                     tabela[r][c] = '_';
                     c++;
                 }
-                for (int i = 0; i < len; i++) {
+                int i = 0;
+                while (i<len) {
                     tabela[r][c + i] = beseda.charAt(i);
+                    i++;
                 }
             } else {
                 r++;
@@ -105,8 +107,10 @@ public class DN05 {
                     System.out.println("Napaka: premajhne dimenzije strani.");
                     return null;
                 }
-                for (int i = 0; i < len; i++) {
+                int i = 0;
+                while (i < len) {
                     tabela[r][c + i] = beseda.charAt(i);
+                    i++;
                 }
             }
             c += len;
@@ -182,14 +186,16 @@ public class DN05 {
                 case "sredina" -> {
                     int uporabljeniZnaki = steviloCrk + steviloBesed - 1;
                     int prostaMesta = steviloStolpcev - uporabljeniZnaki;
-                    int zacetniPolozaj = prostaMesta / 2; // levo je pri lihih mestih za 1 manj
+                    int zacetniPolozaj = prostaMesta / 2;
                     poravnava(novaVrstica, besede, dolzineBesed, steviloBesed, zacetniPolozaj);
                 }
                 case "obojestransko" -> {
                     if (steviloBesed == 1) {
                         int polozaj = 0;
-                        for (int i = 0; i < dolzineBesed[0]; i++) {
+                        int i = 0;
+                        while (i < dolzineBesed[0]) {
                             novaVrstica[polozaj++] = besede[0][i];
+                            i++;
                         }
                     } else {
                         int steviloPresledkov = steviloBesed - 1;
@@ -198,17 +204,23 @@ public class DN05 {
                         int ostanekPodcrtajev = steviloPodcrtajevZaPresledke % steviloPresledkov;
 
                         int polozaj = 0;
-                        for (int b = 0; b < steviloBesed; b++) {
-                            for (int i = 0; i < dolzineBesed[b]; i++) {
+                        int b = 0;
+                        while (b < steviloBesed) {
+                            int i = 0;
+                            while (i < dolzineBesed[b]) {
                                 novaVrstica[polozaj++] = besede[b][i];
+                                i++;
                             }
 
                             if (b < steviloBesed - 1) {
                                 int podcrtajiVTemPresledku = osnovnoSteviloPodcrtajev + (b < ostanekPodcrtajev ? 1 : 0);
-                                for (int p = 0; p < podcrtajiVTemPresledku; p++) {
+                                int p = 0;
+                                while (p < podcrtajiVTemPresledku) {
                                     novaVrstica[polozaj++] = '_';
+                                    p++;
                                 }
                             }
+                            b++;
                         }
                     }
                 }
