@@ -12,7 +12,7 @@ public class Vaje2 {
     }
 
     static long stirlingL(int n){
-        long rezultat = (long) Math.round(Math.sqrt(2*Math.PI * n)  * Math.pow((n/Math.E), n));
+        long rezultat = Math.round(Math.sqrt(2*Math.PI * n)  * Math.pow((n/Math.E), n));
 
         return rezultat;
     }
