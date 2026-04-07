@@ -1,7 +1,4 @@
-package zbirke;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+package Vaje5.nakupovanje.zbirke;
 
 public class Seznam {
     static int st_elementov;
