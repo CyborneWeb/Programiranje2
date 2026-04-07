@@ -5,8 +5,12 @@ public class Logika {
     static int[][] polja;
     static int tocke;
 
+    private static boolean konec;
     // metode za delovanje igre
     public static void zacniNovoIgro(int velikost){
+        polja = new int[velikost][velikost];
+        tocke = 0;
+        konec = false;
         return;
     }
     public static void koncajIgro(){
