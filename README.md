@@ -1,2 +1,11 @@
-# Programiranje2
- Vaje in Domače naloge predmeta Programiranje2
+# Programiranje 2 / Programming 2 - 2025/2026
+
+📚 Solutions to exercises and homework for the **Programiranje 2** course at **FRI**.
+
+---
+
+## 🇸🇮 Slovenščina
+Moje rešitve vaj ter domačih nalog pri predmetu **Programiranje 2** na **FRI**.
+
+## 🇬🇧 English
+My solutions to exercises and homework for the **Programming 2** course at **FRI**.
