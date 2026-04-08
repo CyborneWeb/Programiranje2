@@ -22,4 +22,16 @@ public class Kviz3 {
 
         return rezultat;
     }
+
+    public boolean jeAnagram(String prvaBeseda, String drugaBeseda, boolean zanemariVelikost){
+        if (prvaBeseda.length() != drugaBeseda.length()) return false;
+        if (zanemariVelikost) {
+            prvaBeseda = prvaBeseda.toUpperCase();
+            drugaBeseda = drugaBeseda.toUpperCase();
+        }
+        char[] chars1 = prvaBeseda.toCharArray();
+        char[] chars2 = drugaBeseda.toCharArray();
+        java.util.Arrays.sort(chars1); java.util.Arrays.sort(chars2);
+        return java.util.Arrays.equals(chars1, chars2);
+    }
  }
