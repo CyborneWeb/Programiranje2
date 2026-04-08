@@ -9,4 +9,17 @@ public class Kviz3 {
         }
         return rezultat;
     }
+
+    public int[] zmnoziPolinoma(int[] a, int[] b) {
+
+        int[] rezultat = new int[a.length + b.length - 1];
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < b.length; j++) {
+                rezultat[i + j] += a[i] * b[j];
+            }
+        }
+
+        return rezultat;
+    }
  }
