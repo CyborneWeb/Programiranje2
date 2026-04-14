@@ -2,46 +2,47 @@ public class DN06 {
     public static void main(String[] args) {
         String numbers = args[0];
 
-        int size = 540;
-        int cellSize = size / 9;
+        // Začetno nastavljanje velikosti polja/celic, ter risanje osnovnega platna/nastavljanje "povečave"
+        int velikost = 540;
+        int velikostCelic = velikost / 9;
 
-        StdDraw.setCanvasSize(size, size);
-        StdDraw.setXscale(0, size);
-        StdDraw.setYscale(0, size);
+        StdDraw.setCanvasSize(velikost, velikost);
+        StdDraw.setXscale(0, velikost);
+        StdDraw.setYscale(0, velikost);
         StdDraw.clear(StdDraw.WHITE);
 
-        // Draw numbers
-        StdDraw.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 28));
+        // Začetno risanje tankih črt za vse celice
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.setPenRadius(0.002);
+        for (int i = 0; i <= 9; i++) {
+            double pozicija = i * velikostCelic;
+            StdDraw.line(pozicija, 0, pozicija, velikost);
+            StdDraw.line(0, pozicija, velikost, pozicija);
+        }
+
+        // Risanje odebeljenih črt
+        StdDraw.setPenRadius(0.007);
+        for (int i = 0; i <= 9; i += 3) {
+            double pozicija = i * velikostCelic;
+            StdDraw.line(pozicija, 0, pozicija, velikost);
+            StdDraw.line(0, pozicija, velikost, pozicija);
+        }
+
+        // Draw numbers on top of grid
+        StdDraw.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 22));
         StdDraw.setPenColor(StdDraw.BLACK);
 
         for (int i = 0; i < 81; i++) {
             char c = numbers.charAt(i);
             if (c != '0') {
-                int row = i / 9; // 0 = top row
+                int row = i / 9;
                 int col = i % 9;
-                double x = col * cellSize + cellSize / 2.0;
-                double y = size - (row * cellSize + cellSize / 2.0);
+                double x = col * velikostCelic + velikostCelic / 2.0;
+                double y = velikost - (row * velikostCelic + velikostCelic / 2.0);
                 StdDraw.text(x, y, String.valueOf(c));
             }
         }
-
-        // Draw thin grid lines (all cells)
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.setPenRadius(0.001);
-        for (int i = 0; i <= 9; i++) {
-            double pos = i * cellSize;
-            StdDraw.line(pos, 0, pos, size);
-            StdDraw.line(0, pos, size, pos);
-        }
-
-        // Draw thick lines for 3x3 boxes
-        StdDraw.setPenRadius(0.005);
-        for (int i = 0; i <= 9; i += 3) {
-            double pos = i * cellSize;
-            StdDraw.line(pos, 0, pos, size);
-            StdDraw.line(0, pos, size, pos);
-        }
-
-        StdDraw.save("slika.png");
+        //vrstica ki narejeno risbo direktno shrani kot datoteko
+        //StdDraw.save("slika.png");
     }
 }
