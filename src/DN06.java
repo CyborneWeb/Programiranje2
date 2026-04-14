@@ -28,17 +28,17 @@ public class DN06 {
             StdDraw.line(0, pozicija, velikost, pozicija);
         }
 
-        // Draw numbers on top of grid
+        // Risanje številk na polja
         StdDraw.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 22));
         StdDraw.setPenColor(StdDraw.BLACK);
 
         for (int i = 0; i < 81; i++) {
             char c = numbers.charAt(i);
             if (c != '0') {
-                int row = i / 9;
-                int col = i % 9;
-                double x = col * velikostCelic + velikostCelic / 2.0;
-                double y = velikost - (row * velikostCelic + velikostCelic / 2.0);
+                int vrstica = i / 9;
+                int stolpec = i % 9;
+                double x = stolpec * velikostCelic + velikostCelic / 2.0;
+                double y = velikost - (vrstica * velikostCelic + velikostCelic / 2.0);
                 StdDraw.text(x, y, String.valueOf(c));
             }
         }
