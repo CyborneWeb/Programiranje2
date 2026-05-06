@@ -9,5 +9,9 @@ public class Kontrola {
         seznam.preberiPodatke("vinjete.txt");
 
         seznam.izpisiVinjete();
+
+        seznam.izpisiVinjete("tedenska");
+
+        seznam.izpisiVeljavneLetne("15.04.2026");
     }
 }
