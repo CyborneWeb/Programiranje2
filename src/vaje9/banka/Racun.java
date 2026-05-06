@@ -75,6 +75,6 @@ public abstract class Racun {
      */
     public String toString() {
         // TODO: implementirajte metodo
-        System.out.printf("Račun %s (%s): %f EUR", getStevilka(), opisRacuna(), getStanje());
+        return String.format("Račun %s (%s): %.2f EUR", getStevilka(), opisRacuna(), getStanje());
     }
 }
